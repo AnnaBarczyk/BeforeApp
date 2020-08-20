@@ -30,3 +30,4 @@ namespace BeforeApp.Data
             optionsBuilder.UseSqlServer(_config.GetConnectionString("BeforeApp"));
         }
     }
+}
