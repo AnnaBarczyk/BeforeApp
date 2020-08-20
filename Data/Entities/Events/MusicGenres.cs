@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Entities
 {
-    public enum MusicGenres
+    public class MusicGenres
     {
-        House,
-        Electro,
-        Techno,
-        Industrial,
-        DnB
+        public int MusicGenreId { get; set; }
+        public string MusicGenreName { get; set; }
+
     }
+
 }

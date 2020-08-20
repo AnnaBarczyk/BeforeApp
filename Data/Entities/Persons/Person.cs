@@ -17,7 +17,7 @@ namespace BeforeApp.Data
         public Enum Sex { get; set; }
         public Enum Orientation { get; set; }
         public string Description { get; set; }
-        public string PhotoPath { get; set; }
+        public string PhotoId { get; set; }
         public  ICollection<MusicGenres> FavMusicGenres { get; set; }
         public ICollection<User> ConnectedUsers { get; set; }
         public ICollection<Artist> FavArtists { get; set; }
