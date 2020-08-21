@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using BeforeApp.Data;
 using BeforeApp.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -17,10 +18,10 @@ namespace BeforeApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        //public Startup(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
 
         public IConfiguration Configuration { get; }
 
@@ -29,7 +30,11 @@ namespace BeforeApp
         {
             services.AddDbContext<BeforeAppContext>();
             services.AddScoped<IEventRepository, EventRepository>();
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers();
+            
+            services.AddMvc(opt => opt.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,16 +45,7 @@ namespace BeforeApp
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseMvc();
         }
     }
 }
