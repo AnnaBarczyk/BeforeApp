@@ -76,7 +76,7 @@ namespace BeforeApp.Data.Repositories
 
 
             // Query It
-            query = query.Where(c => c.EventId == eventId);
+            query = query.Where(c => c.Id == eventId);
 
             return await query.FirstOrDefaultAsync();
         }
