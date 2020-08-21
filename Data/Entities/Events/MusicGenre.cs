@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Entities
 {
-    public class MusicGenres
+    public class MusicGenre
     {
-        public int MusicGenreId { get; set; }
-        public string MusicGenreName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
     }
 

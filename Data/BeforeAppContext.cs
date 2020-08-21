@@ -23,7 +23,7 @@ namespace BeforeApp.Data
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<MusicGenres> MusicGenres { get; set; }
+        public DbSet<MusicGenre> MusicGenres { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
