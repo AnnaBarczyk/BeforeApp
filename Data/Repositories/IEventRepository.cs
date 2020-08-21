@@ -9,7 +9,7 @@ namespace BeforeApp.Data.Repositories
 {
     public interface IEventRepository
     {
-        // General 
+        // General add delete
         void Add<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
         Task<bool> SaveChangesAsync();
