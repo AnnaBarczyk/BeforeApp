@@ -18,9 +18,9 @@ namespace BeforeApp.Data
         public string Orientation { get; set; }
         public string Description { get; set; }
         public string PhotoId { get; set; }
-        public  ICollection<MusicGenre> MusicGenres { get; set; }
-        public ICollection<User> ConnectedUsers { get; set; }
-        public ICollection<Artist> Artists { get; set; }
+        public virtual ICollection<MusicGenre> MusicGenres { get; set; }
+        public virtual ICollection<User> ConnectedUsers { get; set; }
+        public virtual ICollection<Artist> Artists { get; set; }
 
     }
 }

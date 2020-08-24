@@ -13,8 +13,8 @@ namespace BeforeApp.Data.Entities
         public DateTime EventDate { get; set; }
         public Location Location { get; set; }
         public Person Publisher { get; set; }
-        public ICollection<Person> UsersAttending { get; set; }
-        public ICollection<MusicGenre> MusicGenres { get; set; }
-        public ICollection<Artist> Artists { get; set; }
+        public virtual ICollection<Person> UsersAttending { get; set; }
+        public virtual ICollection<MusicGenre> MusicGenres { get; set; }
+        public virtual ICollection<Artist> Artists { get; set; }
     }
 }

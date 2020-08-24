@@ -9,36 +9,32 @@ using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Repositories
 {
-    public class EventRepository : IEventRepository
+    public class EventRepository : Repository<Event>, IEventRepository
     {
-        private readonly BeforeAppContext _context;
-        private readonly ILogger<EventRepository> _logger;
 
-        public EventRepository(BeforeAppContext context, ILogger<EventRepository> logger)
+        public EventRepository(BeforeAppContext context, ILogger<EventRepository> logger) : base(context, logger)
         {
-            _context = context;
-            _logger = logger;
         }
 
-        public void Add<T>(T entity) where T : class
-        {
-            _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
-            _context.Add(entity);
-        }
+        //public void Add<T>(T entity) where T : class
+        //{
+        //    _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
+        //    _context.Add(entity);
+        //}
 
-        public void Delete<T>(T entity) where T : class
-        {
-            _logger.LogInformation($"Removing an object of type {entity.GetType()} to the context.");
-            _context.Remove(entity);
-        }
+        //public void Delete<T>(T entity) where T : class
+        //{
+        //    _logger.LogInformation($"Removing an object of type {entity.GetType()} to the context.");
+        //    _context.Remove(entity);
+        //}
 
-        public async Task<bool> SaveChangesAsync()
-        {
-            _logger.LogInformation($"Attempitng to save the changes in the context");
+        //public async Task<bool> SaveChangesAsync()
+        //{
+        //    _logger.LogInformation($"Attempitng to save the changes in the context");
 
-            // Only return success if at least one row was changed
-            return (await _context.SaveChangesAsync()) > 0;
-        }
+        //    // Only return success if at least one row was changed
+        //    return (await _context.SaveChangesAsync()) > 0;
+        //}
 
         public async Task<Event[]> GetAllEventsAsync()
         {

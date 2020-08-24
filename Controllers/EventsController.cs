@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore.Internal;
 using AutoMapper;
+using BeforeApp.Data.Entities;
 
 namespace BeforeApp.Controllers
 {
@@ -31,18 +32,34 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var results = await _repository.GetAllEventsAsync();
-
+                var results = await _repository.GetAllAsync();
 
                 return _mapper.Map<EventModel[]>(results);
 
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "ERRROROROROROR");
             }
         }
 
+        [HttpPost]
+        public async Task<ActionResult<EventModel>> AddEvent(EventModel model)
+        {
+
+            try
+            {
+                var newEvent = _mapper.Map<Event>(model);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
     }
-}
+
+    }
+
