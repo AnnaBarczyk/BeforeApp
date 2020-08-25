@@ -10,6 +10,7 @@ namespace BeforeApp.Models
 {
     public class EventModel
     {
+        public int Id { get; }
         [Required]
         [StringLength(20)]
         public string Moniker { get; set; }

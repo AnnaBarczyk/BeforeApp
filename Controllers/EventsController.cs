@@ -43,35 +43,44 @@ namespace BeforeApp.Controllers
             }
         }
 
+        // TODO: Implement HttpGet GetAllByDate()
+
         [HttpGet("{id}")]
         public async Task<ActionResult<EventModel>> GetEventById(int id){
 
             try
             {
                 var result =await _repository.GetById(id);
+                if (result == null) return NotFound();
                 return  _mapper.Map<EventModel>(result);
             }
             catch (Exception)
             {
-
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
 
             }
 
+        // TODO  [HttpGet("search")]
 
-    [HttpPost]
+
+        [HttpPost]
         public async Task<ActionResult<EventModel>> AddEvent(EventModel model)
         {
 
             try
             {
+                var existing = await _repository.GetEventByMonikerAsync(model.Moniker);
+                if (existing != null) return BadRequest("Moniker in use already!");
+
+
                 var newEvent = _mapper.Map<Event>(model);
                 _repository.Add(newEvent);
 
                 if (await _repository.SaveChangesAsync())
                 {
-                    return this.StatusCode(StatusCodes.Status201Created, "createeeed");
+                    // TODO: Id do zmiany na moniker. w ModelEvents do usunięciA
+                    return Created($"/api/camps/{model.Id}", _mapper.Map<EventModel>(model));
                 }
             }
             catch (Exception)

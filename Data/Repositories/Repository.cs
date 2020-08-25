@@ -12,7 +12,7 @@ namespace BeforeApp.Data.Repositories
     {
         protected readonly BeforeAppContext _context;
         protected readonly ILogger<EventRepository> _logger;
-        private DbSet<T> table = null;
+        protected DbSet<T> table = null;
 
         public Repository(BeforeAppContext context, ILogger<EventRepository> logger)
         {

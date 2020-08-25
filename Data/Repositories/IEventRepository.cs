@@ -16,8 +16,10 @@ namespace BeforeApp.Data.Repositories
 
         //Events 
         // Task<Event[]> GetAllEventsAsync();
-        Task<Event> GetEventAsync(int eventId);
-        Task<Event[]> GetAllEventsByDate(DateTime dateTime);
+        Task<Event> GetEventByIdAsync(int eventId);
+        Task<Event[]> GetAllEventsByDateAsync(DateTime dateTime);
+
+        Task<Event> GetEventByMonikerAsync(string moniker);
 
     }
 }

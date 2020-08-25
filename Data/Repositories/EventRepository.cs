@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace BeforeApp.Data.Repositories
             return await query.ToArrayAsync();
         }
 
-        public async Task<Event[]> GetAllEventsByDate(DateTime dateTime)
+        public async Task<Event[]> GetAllEventsByDateAsync(DateTime dateTime)
         {
             _logger.LogInformation($"Getting all Events");
 
@@ -63,9 +64,9 @@ namespace BeforeApp.Data.Repositories
 
         }
 
-        public async Task<Event> GetEventAsync(int eventId)
+        public async Task<Event> GetEventByIdAsync(int eventId)
         {
-            _logger.LogInformation($"Getting a Camp for {eventId}");
+            _logger.LogInformation($"Getting a Event for {eventId}");
 
             IQueryable<Event> query = _context.Events
                 .Include(c => c.Location);
@@ -77,5 +78,13 @@ namespace BeforeApp.Data.Repositories
             return await query.FirstOrDefaultAsync();
         }
 
+
+        public async Task<Event> GetEventByMonikerAsync(string moniker)
+        {
+            _logger.LogInformation($"Getting a Event for Moniker: {moniker}");
+
+            return await table.FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
+
+        }
     }
 }
