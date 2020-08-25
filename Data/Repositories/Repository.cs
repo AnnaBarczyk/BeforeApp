@@ -20,6 +20,7 @@ namespace BeforeApp.Data.Repositories
             _context = context;
             _logger = logger;
             table = _context.Set<T>();
+            
         }
         public void Add(T entity)
         {
@@ -30,10 +31,9 @@ namespace BeforeApp.Data.Repositories
         public void Delete(int id)
         {
 
-            //_logger.LogInformation($"Removing an object of type {entity.GetType()} to the context.");
-
             var entity = table.Find(id);
             _context.Remove(entity);
+            _logger.LogInformation($"Removing an object of type {entity.GetType()} from the context.");
         }
 
         public async Task<T[]> GetAllAsync()
