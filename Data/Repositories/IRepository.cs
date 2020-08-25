@@ -12,6 +12,8 @@ namespace BeforeApp.Data.Repositories
         void Add(T entity);
         void Delete(int id);
 
+        Task<T> GetById(int id);
+
         Task<T[]> GetAllAsync();
 
         Task<bool> SaveChangesAsync();

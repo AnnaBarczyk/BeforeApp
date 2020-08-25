@@ -36,6 +36,11 @@ namespace BeforeApp.Data.Repositories
             _logger.LogInformation($"Removing an object of type {entity.GetType()} from the context.");
         }
 
+        public async Task<T> GetById(int id)
+        {
+            return await table.FindAsync(id);
+        }
+
         public async Task<T[]> GetAllAsync()
         {
             return await table.ToArrayAsync();

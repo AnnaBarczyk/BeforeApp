@@ -43,18 +43,41 @@ namespace BeforeApp.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EventModel>> GetEventById(int id){
+
+            try
+            {
+                var result =await _repository.GetById(id);
+                return  _mapper.Map<EventModel>(result);
+            }
+            catch (Exception)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+
+            }
+
+
+    [HttpPost]
         public async Task<ActionResult<EventModel>> AddEvent(EventModel model)
         {
 
             try
             {
                 var newEvent = _mapper.Map<Event>(model);
+                _repository.Add(newEvent);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return this.StatusCode(StatusCodes.Status201Created, "createeeed");
+                }
             }
             catch (Exception)
             {
 
-                return BadRequest();
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
 
             return BadRequest();
