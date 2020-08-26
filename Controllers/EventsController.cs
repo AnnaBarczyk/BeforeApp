@@ -109,10 +109,11 @@ namespace BeforeApp.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-
-            // TODO warunek czy item isnieje w bazie danych
             try
             {
+                var oldEvent = await _repository.GetById(id);
+                if (oldEvent == null) return NotFound("Event not found");
+
                 _repository.Delete(id);
 
                 if (await _repository.SaveChangesAsync())
