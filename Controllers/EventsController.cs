@@ -45,7 +45,7 @@ namespace BeforeApp.Controllers
 
         // TODO: Implement HttpGet GetAllByDate()
 
-        [HttpGet("{id}")]
+        [HttpGet("byid/{id:int}")]
         public async Task<ActionResult<EventModel>> GetEventById(int id){
 
             try
@@ -60,6 +60,23 @@ namespace BeforeApp.Controllers
             }
 
             }
+        
+        [HttpGet("{moniker}")]
+        public async Task<ActionResult<EventModel>> GetEventByMoniker(string moniker)
+        {
+
+            try
+            {
+                var result = await _repository.GetEventByMonikerAsync(moniker);
+                if (result == null) return NotFound();
+                return _mapper.Map<EventModel>(result);
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+
+        }
 
         // TODO  [HttpGet("search")]
 
@@ -80,7 +97,7 @@ namespace BeforeApp.Controllers
                 if (await _repository.SaveChangesAsync())
                 {
                     // TODO: Id do zmiany na moniker. w ModelEvents do usunięciA
-                    return Created($"/api/camps/{model.Id}", _mapper.Map<EventModel>(model));
+                    return Created($"/api/events/{model.Moniker}", _mapper.Map<EventModel>(model));
                 }
             }
             catch (Exception)
