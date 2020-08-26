@@ -105,6 +105,30 @@ namespace BeforeApp.Controllers
 
             return BadRequest();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+
+            // TODO warunek czy item isnieje w bazie danych
+            try
+            {
+                _repository.Delete(id);
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Ok("Deleted");
+                }
+
+                return BadRequest("Not Able to delete");
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("failed to delete");
+            }
+            
+        }
     }
 
     }
