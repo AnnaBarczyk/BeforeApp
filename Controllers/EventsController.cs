@@ -64,7 +64,6 @@ namespace BeforeApp.Controllers
         [HttpGet("{moniker}")]
         public async Task<ActionResult<EventModel>> GetEventByMoniker(string moniker)
         {
-
             try
             {
                 var result = await _repository.GetEventByMonikerAsync(moniker);
@@ -75,7 +74,6 @@ namespace BeforeApp.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
-
         }
 
         // TODO  [HttpGet("search")]
@@ -96,7 +94,6 @@ namespace BeforeApp.Controllers
 
                 if (await _repository.SaveChangesAsync())
                 {
-                    // TODO: Id do zmiany na moniker. w ModelEvents do usunięciA
                     return Created($"/api/events/{model.Moniker}", _mapper.Map<EventModel>(model));
                 }
             }
