@@ -1,2 +1,6 @@
 ﻿W startup.cs może być services.AddTransient<Irepo, repo> alo AddScoped<Irepo, repo>. Jaka jest różnica? czy w naszym wypadku jest to wymagane d;a genercznego repozytorium??
+
+
 Status Code - jaka jest dobra praktyka?
+
+RESTFUL API - Czy używać ID i zrobić ogólną funkcję, czy monikera? Jeśli ID jest w modelu jako property to przy POST za każdym razem równe jest 0.
