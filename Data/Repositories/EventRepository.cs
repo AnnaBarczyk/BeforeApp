@@ -1,5 +1,6 @@
 ﻿using BeforeApp.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -86,5 +87,6 @@ namespace BeforeApp.Data.Repositories
             return await table.FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
 
         }
+
     }
 }

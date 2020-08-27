@@ -130,6 +130,20 @@ namespace BeforeApp.Controllers
             }
             
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateEvent(EventModel model)
+        {
+            var toUpdateEvent = _mapper.Map<Event>(model);
+             _repository.Update(toUpdateEvent);
+
+            if (await _repository.SaveChangesAsync())
+            {
+                return Created($"/api/events/{model.Moniker}", _mapper.Map<EventModel>(model));
+            }
+            return BadRequest("dupsko");
+        }
+       
     }
 
     }
