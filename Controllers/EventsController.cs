@@ -131,16 +131,39 @@ namespace BeforeApp.Controllers
             
         }
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateEvent(EventModel model)
+        [HttpPut("{moniker}")]
+        public async Task<ActionResult<EventModel>> UpdateEvent(EventModel model,string moniker)
         {
-            var toUpdateEvent = _mapper.Map<Event>(model);
-             _repository.Update(toUpdateEvent);
-
-            if (await _repository.SaveChangesAsync())
+            try
             {
-                return Created($"/api/events/{model.Moniker}", _mapper.Map<EventModel>(model));
+                
+                var old = await _repository.GetEventByMonikerAsync(model.Moniker);
+
+                if (old == null) return NotFound($"Event with moniker {moniker} could not be found.");
+                _mapper.Map(model, old);
+
+                
+                // Pierwotny koncept;(  --- ERROR:
+                //     "The instance of entity type cannot be tracked 
+                //     because another instance with the same key value for {'Id'} is already being tracked"
+
+                //var updated = _mapper.Map<Event>(model);
+                //updated.Id = old.Id;
+                //_repository.UpdateEntity(updated);
+
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    // return _mapper.Map<EventModel>(old);  ----> błąd 
+                    // System.Text.Json.JsonException: A possible object cycle was detected which is not supported. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32.
+                    return _mapper.Map<EventModel>(model);
+                }
             }
+            catch (Exception)
+            {
+                return BadRequest("Pan błąd");
+            }
+
             return BadRequest("dupsko");
         }
        

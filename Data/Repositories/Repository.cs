@@ -51,10 +51,11 @@ namespace BeforeApp.Data.Repositories
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public void Update(T entity)
+        public void UpdateEntity(T entity)
         {
             _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
-            _context.Update(entity);
+            var updatedEntity = _context.Update(entity);
+            updatedEntity.State = EntityState.Modified;
 
         }
     }

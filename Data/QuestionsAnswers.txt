@@ -4,3 +4,7 @@
 Status Code - jaka jest dobra praktyka?
 
 RESTFUL API - Czy używać ID i zrobić ogólną funkcję, czy monikera? Jeśli ID jest w modelu jako property to przy POST za każdym razem równe jest 0.
+
+Metoda Update w Generycznym Repozytorium.
+
+Czy Tr except to dobra praktyka?
