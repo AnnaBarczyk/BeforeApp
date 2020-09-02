@@ -88,5 +88,46 @@ namespace BeforeApp.Data.Repositories
 
         }
 
+        public async Task<Event[]> GetEventsByParameters(string name, string locationName, string locationCity, string music, string artist)
+        {
+
+            var allEvents = await table.ToArrayAsync();
+
+            if (name != null) { 
+                allEvents = allEvents.Where(e => e.Name == name).ToArray();
+                if (allEvents.Length == 0) return allEvents;
+            }
+            //if (dateTime!= null)
+            //{
+            //    allEvents = allEvents.Where(e => e.EventDate == dateTime).ToArray();
+            //    if (allEvents.Length == 0) return allEvents;
+            //}
+
+            if (locationCity != null)
+            {
+                allEvents = allEvents.Where(e => e.Location.City == locationCity).ToArray();
+                if (allEvents.Length == 0) return allEvents;
+            }
+
+            if (locationName != null)
+            {
+                allEvents = allEvents.Where(e => e.Location.Name == locationName).ToArray();
+                if (allEvents.Length == 0) return allEvents;
+            }
+
+            if (music != null)
+            {
+                allEvents = allEvents.Where(e => e.MusicGenres.Any(m => m.Name == music)).ToArray();
+                if (allEvents.Length == 0) return allEvents;
+            }
+
+            if (artist != null)
+            {
+                allEvents = allEvents.Where(e => e.Artists.Any(a => a.Nickname == artist)).ToArray();
+                if(allEvents.Length == 0) return allEvents;
+            }
+
+            return allEvents;
+        }
     }
 }

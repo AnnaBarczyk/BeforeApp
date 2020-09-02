@@ -76,7 +76,14 @@ namespace BeforeApp.Controllers
             }
         }
 
-        // TODO  [HttpGet("search")]
+        [HttpGet("search")]
+        public async Task<ActionResult<EventModel[]>> SearchByVarious(string name = null, string locationName = null, 
+            string locationCity = null, string music = null, string artist = null)
+        {
+            var results = await _repository.GetEventsByParameters(name, locationName, locationCity, music, artist);
+            if (!results.Any()) return NotFound();
+            return _mapper.Map<EventModel[]>(results);
+        }
 
 
         [HttpPost]

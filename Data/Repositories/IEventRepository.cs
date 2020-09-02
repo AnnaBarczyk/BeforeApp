@@ -21,5 +21,7 @@ namespace BeforeApp.Data.Repositories
 
         Task<Event> GetEventByMonikerAsync(string moniker);
 
+        Task<Event[]> GetEventsByParameters(string name, string locationName, string locationCity, string music, string artist);
+ 
     }
 }
