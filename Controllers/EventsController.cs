@@ -77,10 +77,10 @@ namespace BeforeApp.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult<EventModel[]>> SearchByVarious(string name = null, string locationName = null, 
+        public async Task<ActionResult<EventModel[]>> SearchByVarious(string name = null, string locationName = null, DateTime? dateTime = null,
             string locationCity = null, string music = null, string artist = null)
         {
-            var results = await _repository.GetEventsByParameters(name, locationName, locationCity, music, artist);
+            var results = await _repository.GetEventsByParameters(name, dateTime, locationName, locationCity, music, artist);
             if (!results.Any()) return NotFound();
             return _mapper.Map<EventModel[]>(results);
         }
@@ -139,14 +139,14 @@ namespace BeforeApp.Controllers
         }
 
         [HttpPut("{moniker}")]
-        public async Task<ActionResult<EventModel>> UpdateEvent(EventModel model,string moniker)
+        public async Task<ActionResult<EventModel>> UpdateEvent(EventModel model) // czy potrzebny moniker jako parametr
         {
             try
             {
                 
                 var old = await _repository.GetEventByMonikerAsync(model.Moniker);
 
-                if (old == null) return NotFound($"Event with moniker {moniker} could not be found.");
+                if (old == null) return NotFound($"Event with moniker {model.Moniker} could not be found.");
                 _mapper.Map(model, old);
 
                 

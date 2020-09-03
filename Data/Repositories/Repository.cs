@@ -54,6 +54,7 @@ namespace BeforeApp.Data.Repositories
         public void UpdateEntity(T entity)
         {
             _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
+
             var updatedEntity = _context.Update(entity);
             updatedEntity.State = EntityState.Modified;
 

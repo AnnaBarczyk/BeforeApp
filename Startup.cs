@@ -31,7 +31,6 @@ namespace BeforeApp
         {
             services.AddDbContext<BeforeAppContext>();
             services.AddScoped<IEventRepository, EventRepository>();
-            // czy add Scoped czy AddTransient i co w przypadku Generycznego Repository??
 
             services.AddAutoMapper(typeof(Startup));
 

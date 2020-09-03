@@ -12,6 +12,7 @@ namespace BeforeApp.Models
     {
         [Required]
         [StringLength(20)]
+        // [Unique] to check
         public string Moniker { get; set; }
         [Required]
         [StringLength(200)]

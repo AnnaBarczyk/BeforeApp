@@ -8,3 +8,7 @@ RESTFUL API - Czy używać ID i zrobić ogólną funkcję, czy monikera? Jeśli 
 Metoda Update w Generycznym Repozytorium.
 
 Czy Tr except to dobra praktyka?
+
+
+
+.....

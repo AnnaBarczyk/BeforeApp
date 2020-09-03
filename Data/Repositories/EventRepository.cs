@@ -88,24 +88,26 @@ namespace BeforeApp.Data.Repositories
 
         }
 
-        public async Task<Event[]> GetEventsByParameters(string name, string locationName, string locationCity, string music, string artist)
+        public async Task<Event[]> GetEventsByParameters(string name, DateTime? dateTime, string locationName, string locationCity, string music, string artist)
         {
 
-            var allEvents = await table
+            var allEvents = table
                 .Include(c => c.Location)
-                .Include(d => d.MusicGenres)
-                .ToArrayAsync();
+               .Include(d => d.MusicGenres);
+                
             
 
-            if (name != null) { 
-                allEvents = allEvents.Where(e => e.Name == name).ToArray();
+            if (!String.IsNullOrEmpty(name)) {
+                allEvents = allEvents.Where(e => e.Name == name);
+                //if (allEvents.Length == 0) return allEvents;
+            }
+
+
+            if (dateTime.HasValue)
+            {
+                allEvents = allEvents.Where(e => e.EventDate == dateTime).ToArray();
                 if (allEvents.Length == 0) return allEvents;
             }
-            //if (dateTime!= null)
-            //{
-            //    allEvents = allEvents.Where(e => e.EventDate == dateTime).ToArray();
-            //    if (allEvents.Length == 0) return allEvents;
-            //}
 
             if (locationCity != null)
             {
@@ -131,7 +133,7 @@ namespace BeforeApp.Data.Repositories
                 if(allEvents.Length == 0) return allEvents;
             }
 
-            return allEvents;
+            return await allEvents.ToArrayAsync();
         }
     }
 }
