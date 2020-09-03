@@ -32,7 +32,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var results = await _repository.GetAllAsync();
+                var results = await _repository.GetAllEventsAsync();
 
                 return _mapper.Map<EventModel[]>(results);
 

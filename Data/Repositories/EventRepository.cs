@@ -42,10 +42,10 @@ namespace BeforeApp.Data.Repositories
         {
             _logger.LogInformation($"Getting all Events");
 
-            IQueryable<Event> query = _context.Events
+            IQueryable<Event> query = table
                 .Include(c => c.Location);
 
-            query = query.OrderByDescending(c => c.EventDate);
+            //query = query.OrderByDescending(c => c.EventDate);
 
             return await query.ToArrayAsync();
         }
@@ -91,7 +91,11 @@ namespace BeforeApp.Data.Repositories
         public async Task<Event[]> GetEventsByParameters(string name, string locationName, string locationCity, string music, string artist)
         {
 
-            var allEvents = await table.ToArrayAsync();
+            var allEvents = await table
+                .Include(c => c.Location)
+                .Include(d => d.MusicGenres)
+                .ToArrayAsync();
+            
 
             if (name != null) { 
                 allEvents = allEvents.Where(e => e.Name == name).ToArray();
