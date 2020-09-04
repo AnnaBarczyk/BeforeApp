@@ -161,9 +161,7 @@ namespace BeforeApp.Controllers
 
                 if (await _repository.SaveChangesAsync())
                 {
-                    // return _mapper.Map<EventModel>(old);  ----> błąd 
-                    // System.Text.Json.JsonException: A possible object cycle was detected which is not supported. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32.
-                    return _mapper.Map<EventModel>(model);
+                    return _mapper.Map<EventModel>(old);
                 }
             }
             catch (Exception)
