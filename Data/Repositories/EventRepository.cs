@@ -18,25 +18,6 @@ namespace BeforeApp.Data.Repositories
         {
         }
 
-        //public void Add<T>(T entity) where T : class
-        //{
-        //    _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
-        //    _context.Add(entity);
-        //}
-
-        //public void Delete<T>(T entity) where T : class
-        //{
-        //    _logger.LogInformation($"Removing an object of type {entity.GetType()} to the context.");
-        //    _context.Remove(entity);
-        //}
-
-        //public async Task<bool> SaveChangesAsync()
-        //{
-        //    _logger.LogInformation($"Attempitng to save the changes in the context");
-
-        //    // Only return success if at least one row was changed
-        //    return (await _context.SaveChangesAsync()) > 0;
-        //}
 
         public async Task<Event[]> GetAllEventsAsync()
         {
@@ -90,47 +71,40 @@ namespace BeforeApp.Data.Repositories
 
         public async Task<Event[]> GetEventsByParameters(string name, DateTime? dateTime, string locationName, string locationCity, string music, string artist)
         {
-
-            var allEvents = table
+            IQueryable<Event> allEvents = table
                 .Include(c => c.Location)
                .Include(d => d.MusicGenres);
-                
-            
 
-            if (!String.IsNullOrEmpty(name)) {
-                allEvents = allEvents.Where(e => e.Name == name);
-                //if (allEvents.Length == 0) return allEvents;
+
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                allEvents = allEvents.Where(e => e.Name.Equals(name));
             }
-
 
             if (dateTime.HasValue)
             {
-                allEvents = allEvents.Where(e => e.EventDate == dateTime).ToArray();
-                if (allEvents.Length == 0) return allEvents;
+                allEvents = allEvents.Where(e => e.EventDate.Equals(dateTime));
             }
 
-            if (locationCity != null)
+            if (!String.IsNullOrEmpty(locationCity))
             {
-                allEvents = allEvents.Where(e => e.Location.City == locationCity).ToArray();
-                if (allEvents.Length == 0) return allEvents;
+                allEvents = allEvents.Where(e => e.Location.City.Equals(locationCity));
             }
 
-            if (locationName != null)
+            if (!String.IsNullOrEmpty(locationName))
             {
-                allEvents = allEvents.Where(e => e.Location.Name == locationName).ToArray();
-                if (allEvents.Length == 0) return allEvents;
+                allEvents = allEvents.Where(e => e.Location.Name.Equals(locationName));
             }
 
-            if (music != null)
+            if (!String.IsNullOrEmpty(music))
             {
-                allEvents = allEvents.Where(e => e.MusicGenres.Any(m => m.Name == music)).ToArray();
-                if (allEvents.Length == 0) return allEvents;
+                allEvents = allEvents.Where(e => e.MusicGenres.Any(m => m.Name.Equals(music)));
             }
 
-            if (artist != null)
+            if (!String.IsNullOrEmpty(artist))
             {
-                allEvents = allEvents.Where(e => e.Artists.Any(a => a.Nickname == artist)).ToArray();
-                if(allEvents.Length == 0) return allEvents;
+                allEvents = allEvents.Where(e => e.Artists.Any(a => a.Nickname.Equals(artist)));
             }
 
             return await allEvents.ToArrayAsync();
