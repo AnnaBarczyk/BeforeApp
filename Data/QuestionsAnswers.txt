@@ -9,6 +9,6 @@ Metoda Update w Generycznym Repozytorium.
 
 Czy Tr except to dobra praktyka?
 
-
-
 .....
+
+Gdzie SaveChanges na przyładnie Event Controleera i metody PUT..

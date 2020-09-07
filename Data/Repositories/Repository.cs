@@ -55,9 +55,26 @@ namespace BeforeApp.Data.Repositories
         {
             _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
 
-            var updatedEntity = _context.Update(entity);
+            table.Attach(entity);
+            var updatedEntity = _context.Entry(entity);
+
+            // też działa!! 
+            // Jaka jest różnica????
+            // var updatedEntity = _context.Update(entity);   
             updatedEntity.State = EntityState.Modified;
 
+
+            // ALTERNATYWNY UPDATE
+            //public async Task<bool> UpdateEntity(T entity)
+            //{
+            //    _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
+
+            //    var updatedEntity = _context.Update(entity);
+            //    updatedEntity.State = EntityState.Modified;
+
+            //    return (await _context.SaveChangesAsync()) > 0;
+
+            //}
         }
     }
 }

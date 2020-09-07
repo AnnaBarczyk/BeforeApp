@@ -143,25 +143,29 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                
+                // w Metodzie GetEventByMonikerAsync(model.Moniker) dodano ASNoTracking. Kiedy to jest użyteczne, jakie są alternatywy??
                 var old = await _repository.GetEventByMonikerAsync(model.Moniker);
-
-                if (old == null) return NotFound($"Event with moniker {model.Moniker} could not be found.");
-                _mapper.Map(model, old);
-
                 
-                // Pierwotny koncept;(  --- ERROR:
-                //     "The instance of entity type cannot be tracked 
-                //     because another instance with the same key value for {'Id'} is already being tracked"
+                if (old == null) return NotFound($"Event with moniker {model.Moniker} could not be found.");
 
-                //var updated = _mapper.Map<Event>(model);
-                //updated.Id = old.Id;
-                //_repository.UpdateEntity(updated);
+                // można robić update bezpośrednio w kontrolerze za pomocą mappera:
+                // _mapper.Map(model, old);
+                
+
+                var updated = _mapper.Map<Event>(model);
+                updated.Id = old.Id;
+                _repository.UpdateEntity(updated);
+
+                // Czy SaveChanges lepiej dać wewątrz repozytorium czy w kontrolerze?? i czy Update w Repozytorim może/powinien zwracać boola?
+                //if (await _repository.UpdateEntity(updated))
+                //{
+                //    return _mapper.Map<EventModel>(updated);
+                //}
 
 
                 if (await _repository.SaveChangesAsync())
                 {
-                    return _mapper.Map<EventModel>(old);
+                    return _mapper.Map<EventModel>(updated);
                 }
             }
             catch (Exception)

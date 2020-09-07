@@ -65,7 +65,7 @@ namespace BeforeApp.Data.Repositories
         {
             _logger.LogInformation($"Getting a Event for Moniker: {moniker}");
 
-            return await table.FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
+            return await table.AsNoTracking().FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
 
         }
 
