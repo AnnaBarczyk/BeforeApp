@@ -144,6 +144,8 @@ namespace BeforeApp.Controllers
             try
             {
                 // w Metodzie GetEventByMonikerAsync(model.Moniker) dodano ASNoTracking. Kiedy to jest użyteczne, jakie są alternatywy??
+                // czy wytarczy na oniec używania entity z tej metody saveChanges aby przestać trackować??
+
                 var old = await _repository.GetEventByMonikerAsync(model.Moniker);
                 
                 if (old == null) return NotFound($"Event with moniker {model.Moniker} could not be found.");
