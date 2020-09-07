@@ -139,16 +139,16 @@ namespace BeforeApp.Controllers
         }
 
         [HttpPut("{moniker}")]
-        public async Task<ActionResult<EventModel>> UpdateEvent(EventModel model) // czy potrzebny moniker jako parametr
+        public async Task<ActionResult<EventModel>> UpdateEvent(EventModel model, string moniker)
         {
             try
             {
                 // w Metodzie GetEventByMonikerAsync(model.Moniker) dodano ASNoTracking. Kiedy to jest użyteczne, jakie są alternatywy??
                 // czy wytarczy na oniec używania entity z tej metody saveChanges aby przestać trackować??
 
-                var old = await _repository.GetEventByMonikerAsync(model.Moniker);
+                var old = await _repository.GetEventByMonikerAsync(moniker);
                 
-                if (old == null) return NotFound($"Event with moniker {model.Moniker} could not be found.");
+                if (old == null) return NotFound($"Event with moniker {moniker} could not be found.");
 
                 // można robić update bezpośrednio w kontrolerze za pomocą mappera:
                 // _mapper.Map(model, old);
