@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,9 +19,12 @@ namespace BeforeApp.Data
         public string Orientation { get; set; }
         public string Description { get; set; }
         public string PhotoId { get; set; }
+
+       // [NotMapped]
+        public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<MusicGenre> MusicGenres { get; set; }
         public virtual ICollection<User> ConnectedUsers { get; set; }
-        public virtual ICollection<Artist> Artists { get; set; }
+
 
     }
 }

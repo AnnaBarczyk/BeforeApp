@@ -4,14 +4,16 @@ using BeforeApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeforeApp.Migrations
 {
     [DbContext(typeof(BeforeAppContext))]
-    partial class BeforeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200907124448_TestCreate")]
+    partial class TestCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,39 +51,6 @@ namespace BeforeApp.Migrations
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EventDate = new DateTime(2020, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationId = 1,
-                            Moniker = "tekk2020waw",
-                            Name = "Tekk"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EventDate = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationId = 2,
-                            Moniker = "Orga202ldz",
-                            Name = "Organic"
-                        });
-                });
-
-            modelBuilder.Entity("BeforeApp.Data.Entities.Events.EventMusicGenres", b =>
-                {
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MusicGenreId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EventId", "MusicGenreId");
-
-                    b.HasIndex("MusicGenreId");
-
-                    b.ToTable("EventMusicGenres");
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Entities.Location", b =>
@@ -103,22 +72,6 @@ namespace BeforeApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Adress = "Ul. Jeden",
-                            City = "Warszawa",
-                            Name = "Plener"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Adress = "Off",
-                            City = "Lodz",
-                            Name = "Dom"
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Entities.MusicGenre", b =>
@@ -128,6 +81,9 @@ namespace BeforeApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -136,26 +92,11 @@ namespace BeforeApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EventId");
+
                     b.HasIndex("PersonId");
 
                     b.ToTable("MusicGenres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Techno"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "House"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Folk"
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Person", b =>
@@ -253,23 +194,12 @@ namespace BeforeApp.Migrations
                         .HasForeignKey("PublisherId");
                 });
 
-            modelBuilder.Entity("BeforeApp.Data.Entities.Events.EventMusicGenres", b =>
-                {
-                    b.HasOne("BeforeApp.Data.Entities.Event", "Event")
-                        .WithMany("EventMusicGenres")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeforeApp.Data.Entities.MusicGenre", "MusicGenre")
-                        .WithMany("EventMusicGenres")
-                        .HasForeignKey("MusicGenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BeforeApp.Data.Entities.MusicGenre", b =>
                 {
+                    b.HasOne("BeforeApp.Data.Entities.Event", null)
+                        .WithMany("MusicGenres")
+                        .HasForeignKey("EventId");
+
                     b.HasOne("BeforeApp.Data.Person", null)
                         .WithMany("MusicGenres")
                         .HasForeignKey("PersonId");

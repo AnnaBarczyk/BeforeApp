@@ -73,7 +73,7 @@ namespace BeforeApp.Data.Repositories
         {
             IQueryable<Event> allEvents = table
                 .Include(c => c.Location)
-               .Include(d => d.MusicGenres);
+               .Include(d => d.EventMusicGenres);
 
 
 
@@ -99,7 +99,7 @@ namespace BeforeApp.Data.Repositories
 
             if (!String.IsNullOrEmpty(music))
             {
-                allEvents = allEvents.Where(e => e.MusicGenres.Any(m => m.Name.Equals(music)));
+                allEvents = allEvents.Where(e => e.EventMusicGenres.Any(m => m.MusicGenre.Name == music));    /* .Any(m => m.Name.Equals(music)));*/
             }
 
             if (!String.IsNullOrEmpty(artist))

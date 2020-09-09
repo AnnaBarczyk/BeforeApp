@@ -4,14 +4,16 @@ using BeforeApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeforeApp.Migrations
 {
     [DbContext(typeof(BeforeAppContext))]
-    partial class BeforeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200909132533_TestMigration3")]
+    partial class TestMigration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,24 +51,6 @@ namespace BeforeApp.Migrations
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EventDate = new DateTime(2020, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationId = 1,
-                            Moniker = "tekk2020waw",
-                            Name = "Tekk"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EventDate = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationId = 2,
-                            Moniker = "Orga202ldz",
-                            Name = "Organic"
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Entities.Events.EventMusicGenres", b =>
@@ -103,22 +87,6 @@ namespace BeforeApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Adress = "Ul. Jeden",
-                            City = "Warszawa",
-                            Name = "Plener"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Adress = "Off",
-                            City = "Lodz",
-                            Name = "Dom"
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Entities.MusicGenre", b =>
@@ -139,23 +107,6 @@ namespace BeforeApp.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("MusicGenres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Techno"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "House"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Folk"
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Person", b =>

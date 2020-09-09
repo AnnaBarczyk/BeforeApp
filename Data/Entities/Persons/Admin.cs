@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Entities
 {
-    public class Admin : Person
+    public class Admin : User
     {
-        
 
     }
 }

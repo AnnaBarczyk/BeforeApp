@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Profiles
 {
-    public class BeforaAppProfile : Profile
+    public class BeforeAppProfile : Profile
     {
 
-        public BeforaAppProfile()
+        public BeforeAppProfile()
         {
             CreateMap<Event, EventModel>().ReverseMap();
         }
