@@ -28,6 +28,7 @@ namespace BeforeApp.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_config.GetConnectionString("BeforeApp"));
+           // optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder bldr)
@@ -61,7 +62,9 @@ namespace BeforeApp.Data
                 Moniker = "tekk2020waw",
                 Name = "Tekk",
                 EventDate = new DateTime(2020, 10, 18),
-                Location = locations[0]
+                // Location = locations[0],
+                LocationId = locations[0].Id
+                
                 },
 
                 new Event()
@@ -70,6 +73,8 @@ namespace BeforeApp.Data
                     Moniker = "Orga202ldz",
                     Name = "Organic",
                     EventDate = new DateTime(2021, 01, 12),
+                    //Location = locations[1],
+                    LocationId = locations[1].Id
                 }
 
             };
@@ -201,7 +206,11 @@ namespace BeforeApp.Data
 
             bldr.Entity<Location>().HasData(locations);
             bldr.Entity<Event>().HasData(events);
-            bldr.Entity<Person>().HasData(persons);
+            foreach (var person in persons)
+            {
+                bldr.Entity(person.GetType()).HasData(person);
+            }
+            
             bldr.Entity<MusicGenre>().HasData(musicGenres);
             bldr.Entity<EventMusicGenres>().HasData(eventMusicGenres);
             bldr.Entity<PersonMusicGenres>().HasData(personMusicGenres);
