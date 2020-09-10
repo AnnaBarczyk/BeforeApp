@@ -15,6 +15,7 @@ namespace BeforeApp.Data.Profiles
         public BeforeAppProfile()
         {
             CreateMap<Event, EventModel>().ReverseMap();
+            CreateMap<Location, LocationModel>().ReverseMap();
         }
         
     }

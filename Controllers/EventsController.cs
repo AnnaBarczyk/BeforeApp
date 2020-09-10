@@ -39,7 +39,7 @@ namespace BeforeApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "ERRROROROROROR");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
 
