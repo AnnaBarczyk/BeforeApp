@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BeforeApp.Data.Entities;
-using BeforeApp.Data.Entities.Events;
+using BeforeApp.Data.Entities.Connectors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -36,6 +33,145 @@ namespace BeforeApp.Data
         protected override void OnModelCreating(ModelBuilder bldr)
         {
 
+          
+
+            var locations = new List<Location>
+            {
+                new Location() {
+                Id = 1,
+                Name = "Plener",
+                City = "Warszawa",
+                Adress = "Ul. Jeden",
+                },
+                new Location()
+                {
+                Id = 2,
+                Name = "Dom",
+                City = "Lodz",
+                Adress = "Off",
+                }
+            };
+
+
+            var events = new List<Event>
+            {
+
+                new Event(){
+                Id = 1,
+                Moniker = "tekk2020waw",
+                Name = "Tekk",
+                EventDate = new DateTime(2020, 10, 18),
+                Location = locations[0]
+                },
+
+                new Event()
+                {
+                    Id = 2,
+                    Moniker = "Orga202ldz",
+                    Name = "Organic",
+                    EventDate = new DateTime(2021, 01, 12),
+                }
+
+            };
+
+            var persons = new List<Person>
+            {
+                new User()
+                {
+                    Id = 1,
+                    Email = "technochlopak@elo.pl",
+                    Nickname = "Ziomek",
+                    Birthdate = new DateTime(1985, 01, 18),
+                    Sex = "Male",
+                    Orientation = "Straight",
+                   Description = "Siema elo 520"
+                },
+                new User()
+                {
+                Id = 2,
+                Email = "technolaska@elo.pl",
+                Nickname = "Ziomalka",
+                Birthdate = new DateTime(1994, 01, 18),
+                Sex = "Female",
+                Orientation = "Bi",
+                Description = "<3"
+                },
+
+                new Admin()
+                {
+                Id = 3,
+                Email = "admin@elo.pl",
+                Nickname = "Admin",
+                Birthdate = new DateTime(1994, 01, 18),
+                Sex = "Female",
+                Orientation = "Bi",
+                Description = "<3"
+                }
+            };
+
+            var musicGenres = new List<MusicGenre>
+            {
+                new MusicGenre(){
+                Id = 1,
+                Name = "Techno"
+                },
+
+                new MusicGenre(){
+                Id = 2,
+                Name = "House"
+                },
+
+                new MusicGenre(){
+                Id = 3,
+                Name = "Folk"
+                }
+            };
+
+
+            var eventMusicGenres = new List<EventMusicGenres>
+            {
+                new EventMusicGenres()
+                {
+                    EventId = 1,
+                    MusicGenreId = 1
+                },
+                new EventMusicGenres()
+                {
+                    EventId = 1,
+                    MusicGenreId = 2
+                },
+                new EventMusicGenres()
+                {
+                    EventId = 2,
+                    MusicGenreId = 2
+                }
+            };
+
+            var personMusicGenres = new List<PersonMusicGenres>
+            {
+                new PersonMusicGenres()
+                {
+                    PersonId = 1,
+                    MusicGenreId = 1
+                },
+
+                new PersonMusicGenres()
+                {
+                    PersonId = 1,
+                    MusicGenreId = 2
+                },
+
+                 new PersonMusicGenres()
+                {
+                    PersonId = 2,
+                    MusicGenreId = 2
+                }
+            };
+
+
+
+
+            // Many-to-many relation between event and music genre
             bldr.Entity<EventMusicGenres>()
                 .HasKey(t => new { t.EventId, t.MusicGenreId });
 
@@ -49,57 +185,28 @@ namespace BeforeApp.Data
                 .WithMany(t => t.EventMusicGenres)
                 .HasForeignKey(pt => pt.MusicGenreId);
 
+            // Many-to-many relation between person and music genres
+            bldr.Entity<PersonMusicGenres>()
+                .HasKey(a => new { a.PersonId, a.MusicGenreId });
 
+            bldr.Entity<PersonMusicGenres>()
+                .HasOne(ba => ba.Person)
+                .WithMany(b => b.PersonMusicGenres)
+                .HasForeignKey(pa => pa.PersonId);
 
+            bldr.Entity<PersonMusicGenres>()
+                .HasOne(ba => ba.MusicGenre)
+                .WithMany(a => a.PersonMusicGenres)
+                .HasForeignKey(ba => ba.MusicGenreId);
 
-            bldr.Entity<Event>().HasData(new
-            {
-                Id = 1,
-                Moniker = "tekk2020waw",
-                Name = "Tekk",
-                EventDate = new DateTime(2020, 10, 18),
-                LocationId = 1,
-            },
-                new
-                {
-                    Id = 2,
-                    Moniker = "Orga202ldz",
-                    Name = "Organic",
-                    EventDate = new DateTime(2021, 01, 12),
-                    LocationId = 2,
-                });
-            bldr.Entity<Location>().HasData(new
-            {
-                Id = 1,
-                Name = "Plener",
-                City = "Warszawa",
-                Adress = "Ul. Jeden",
-            },
-            new
-            {
-                Id = 2,
-                Name = "Dom",
-                City = "Lodz",
-                Adress = "Off",
-            });
+            bldr.Entity<Location>().HasData(locations);
+            bldr.Entity<Event>().HasData(events);
+            bldr.Entity<Person>().HasData(persons);
+            bldr.Entity<MusicGenre>().HasData(musicGenres);
+            bldr.Entity<EventMusicGenres>().HasData(eventMusicGenres);
+            bldr.Entity<PersonMusicGenres>().HasData(personMusicGenres);
 
-            bldr.Entity<MusicGenre>().HasData(new
-            {
-                Id = 1,
-                Name = "Techno"
-            },
-            new
-            {
-                Id = 2,
-                Name = "House"
-            },
-
-            new
-            {
-                Id = 3,
-                Name = "Folk"
-            });
-
+            
         }
     }
 }

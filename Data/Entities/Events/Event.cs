@@ -1,9 +1,7 @@
-﻿using BeforeApp.Data.Entities.Events;
+﻿using BeforeApp.Data.Entities.Connectors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Entities
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeforeApp.Data.Entities.Events
+namespace BeforeApp.Data.Entities.Connectors
 {
     public class EventMusicGenres
     {

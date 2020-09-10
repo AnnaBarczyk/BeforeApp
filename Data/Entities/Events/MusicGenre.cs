@@ -1,9 +1,5 @@
-﻿using BeforeApp.Data.Entities.Events;
-using System;
+﻿using BeforeApp.Data.Entities.Connectors;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Entities
 {
@@ -18,6 +14,7 @@ namespace BeforeApp.Data.Entities
         public string Name { get; set; }
         //[NotMapped]
         public ICollection<EventMusicGenres> EventMusicGenres { get; set; }
+        public ICollection<PersonMusicGenres> PersonMusicGenres { get; set; }
 
     }
 
