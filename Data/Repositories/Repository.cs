@@ -11,10 +11,10 @@ namespace BeforeApp.Data.Repositories
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly BeforeAppContext _context;
-        protected readonly ILogger<EventRepository> _logger;
+        protected readonly ILogger<T> _logger;
         protected DbSet<T> table = null;
 
-        public Repository(BeforeAppContext context, ILogger<EventRepository> logger)
+        public Repository(BeforeAppContext context, ILogger<T> logger)
         {
             
             _context = context;

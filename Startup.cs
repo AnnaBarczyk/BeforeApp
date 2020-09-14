@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BeforeApp.Data;
 using BeforeApp.Data.Repositories;
+using BeforeApp.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace BeforeApp
             services.AddDbContext<BeforeAppContext>();
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IEventService, EventService>();
 
             services.AddAutoMapper(typeof(Startup));
 

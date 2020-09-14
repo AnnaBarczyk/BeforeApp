@@ -14,7 +14,7 @@ namespace BeforeApp.Data.Repositories
     public class EventRepository : Repository<Event>, IEventRepository
     {
 
-        public EventRepository(BeforeAppContext context, ILogger<EventRepository> logger) : base(context, logger)
+        public EventRepository(BeforeAppContext context, ILogger<Event> logger) : base(context, logger) // Jakiej klasy powinien być logger??
         {
         }
 

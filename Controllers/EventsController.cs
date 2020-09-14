@@ -10,7 +10,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore.Internal;
 using AutoMapper;
-using BeforeApp.Data.Entities;
+//using BeforeApp.Data.Entities;
+using BeforeApp.Data.Services;
 
 namespace BeforeApp.Controllers
 {
@@ -20,11 +21,13 @@ namespace BeforeApp.Controllers
     {
         private readonly IEventRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IEventService _eventService;
 
-        public EventsController(IEventRepository repository, IMapper mapper)
+        public EventsController(IEventRepository repository, IMapper mapper, IEventService eventService)
         {
             _repository = repository;
             _mapper = mapper;
+            _eventService = eventService;
         }
 
         [HttpGet]
@@ -42,8 +45,6 @@ namespace BeforeApp.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
-
-        // TODO: Implement HttpGet GetAllByDate()
 
         [HttpGet("byid/{id:int}")]
         public async Task<ActionResult<EventModel>> GetEventById(int id){
@@ -95,9 +96,11 @@ namespace BeforeApp.Controllers
                 var existing = await _repository.GetEventByMonikerAsync(model.Moniker);
                 if (existing != null) return BadRequest("Moniker in use already!");
 
+                _eventService.Add(model);
 
-                var newEvent = _mapper.Map<Event>(model);
-                _repository.Add(newEvent);
+                // wersja bez services --> bezpośrednio w kontrolerze
+                //var newEvent = _mapper.Map<Event>(model);
+                //_repository.Add(newEvent);
 
                 if (await _repository.SaveChangesAsync())
                 {
@@ -143,31 +146,23 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                // w Metodzie GetEventByMonikerAsync(model.Moniker) dodano ASNoTracking. Kiedy to jest użyteczne, jakie są alternatywy??
-                // czy wytarczy na oniec używania entity z tej metody saveChanges aby przestać trackować??
-
                 var old = await _repository.GetEventByMonikerAsync(moniker);
-                
+
                 if (old == null) return NotFound($"Event with moniker {moniker} could not be found.");
 
                 // można robić update bezpośrednio w kontrolerze za pomocą mappera:
                 // _mapper.Map(model, old);
-                
 
-                var updated = _mapper.Map<Event>(model);
-                updated.Id = old.Id;
-                _repository.UpdateEntity(updated);
+                var updated = _eventService.Update(model, old.Id);
 
-                // Czy SaveChanges lepiej dać wewątrz repozytorium czy w kontrolerze?? i czy Update w Repozytorim może/powinien zwracać boola?
-                //if (await _repository.UpdateEntity(updated))
-                //{
-                //    return _mapper.Map<EventModel>(updated);
-                //}
+                //var updated = _mapper.Map<Event>(model);
+                //updated.Id = old.Id;
+                //_repository.UpdateEntity(updated);
 
 
                 if (await _repository.SaveChangesAsync())
                 {
-                    return _mapper.Map<EventModel>(updated);
+                    return updated;
                 }
             }
             catch (Exception)
@@ -177,7 +172,7 @@ namespace BeforeApp.Controllers
 
             return BadRequest("dupsko");
         }
-       
+
     }
 
     }
