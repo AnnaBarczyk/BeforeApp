@@ -24,7 +24,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                return await _eventService.Get();
+                return await _eventService.GetAll();
             }
             catch (Exception)
             {
@@ -37,7 +37,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var result = await _eventService.GetByAsync(id);
+                var result = await _eventService.GetEventByAsync(id);
                 if (result == null) return NotFound();
                 return result;
             }
@@ -52,9 +52,9 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var result = await _repository.GetEventByMonikerAsync(moniker);
+                var result = await _eventService.GetEventByAsync(moniker);
                 if (result == null) return NotFound();
-                return _mapper.Map<EventModel>(result);
+                return result;
             }
             catch (Exception)
             {
@@ -67,10 +67,17 @@ namespace BeforeApp.Controllers
             DateTime? dateTime = null,
             string locationCity = null, string music = null, string artist = null)
         {
-            var results =
-                await _repository.GetEventsByParameters(name, dateTime, locationName, locationCity, music, artist);
-            if (!results.Any()) return NotFound();
-            return _mapper.Map<EventModel[]>(results);
+            try
+            {
+                var results = await _eventService.GetEventsByParameters(name, dateTime, locationName, locationCity, music, artist);
+                if (!results.Any()) return NotFound();
+                return results;
+            }
+            catch (Exception)
+            {
+                StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+            return BadRequest();
         }
 
 
