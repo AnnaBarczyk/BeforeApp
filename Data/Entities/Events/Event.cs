@@ -1,14 +1,13 @@
-﻿using BeforeApp.Data.Entities.Connectors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BeforeApp.Data.Entities.Connectors;
 
 namespace BeforeApp.Data.Entities
 {
     public class Event
     {
-
         //public Event()
         //{
         //    this.UsersAttending = new HashSet<User>();
@@ -17,14 +16,14 @@ namespace BeforeApp.Data.Entities
 
         //}
         public int Id { get; set; }
-        [Required]
-        public string Moniker { get; set; }
+
+        [Required] public string Moniker { get; set; }
+
         public string Name { get; set; }
         public DateTime EventDate { get; set; }
         public Location Location { get; set; }
 
-        [ForeignKey("Location")]
-        public int LocationId { get; set; }
+        [ForeignKey("Location")] public int LocationId { get; set; }
 
         public Person Publisher { get; set; }
         public virtual ICollection<User> UsersAttending { get; set; }

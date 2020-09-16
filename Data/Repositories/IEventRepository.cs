@@ -1,9 +1,6 @@
-﻿using BeforeApp.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using BeforeApp.Data.Entities;
 
 namespace BeforeApp.Data.Repositories
 {
@@ -21,7 +18,7 @@ namespace BeforeApp.Data.Repositories
 
         Task<Event> GetEventByMonikerAsync(string moniker);
 
-        Task<Event[]> GetEventsByParameters(string name, DateTime? dateTime, string locationName, string locationCity, string music, string artist);
- 
+        Task<Event[]> GetEventsByParameters(string name, DateTime? dateTime, string locationName, string locationCity,
+            string music, string artist);
     }
 }

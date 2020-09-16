@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Repositories
 {
@@ -12,16 +8,15 @@ namespace BeforeApp.Data.Repositories
     {
         protected readonly BeforeAppContext _context;
         protected readonly ILogger<T> _logger;
-        protected DbSet<T> table = null;
+        protected DbSet<T> table;
 
         public Repository(BeforeAppContext context, ILogger<T> logger)
         {
-            
             _context = context;
             _logger = logger;
             table = _context.Set<T>();
-            
         }
+
         public void Add(T entity)
         {
             _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
@@ -30,7 +25,6 @@ namespace BeforeApp.Data.Repositories
 
         public void Delete(int id)
         {
-
             var entity = table.Find(id);
             _context.Remove(entity);
             _logger.LogInformation($"Removing an object of type {entity.GetType()} from the context.");
@@ -48,33 +42,20 @@ namespace BeforeApp.Data.Repositories
 
         public async Task<bool> SaveChangesAsync()
         {
-            return (await _context.SaveChangesAsync()) > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public void UpdateEntity(T entity)
+        public async Task<bool> UpdateEntity(T entity)
         {
             _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
 
             table.Attach(entity);
             var updatedEntity = _context.Entry(entity);
-
-            // też działa!! 
-            // Jaka jest różnica????
-            // var updatedEntity = _context.Update(entity);   
+ 
             updatedEntity.State = EntityState.Modified;
 
+           return (await _context.SaveChangesAsync()) > 0;
 
-            // ALTERNATYWNY UPDATE
-            //public async Task<bool> UpdateEntity(T entity)
-            //{
-            //    _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
-
-            //    var updatedEntity = _context.Update(entity);
-            //    updatedEntity.State = EntityState.Modified;
-
-            //    return (await _context.SaveChangesAsync()) > 0;
-
-            //}
         }
     }
 }

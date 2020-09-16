@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Repositories
 {
-    public interface IRepository<T> where T: class
+    public interface IRepository<T> where T : class
     {
         // General add delete
         void Add(T entity);
@@ -15,7 +11,7 @@ namespace BeforeApp.Data.Repositories
         Task<T> GetById(int id);
 
         Task<T[]> GetAllAsync();
-        void UpdateEntity(T entity);
+        Task<bool> UpdateEntity(T entity);
 
         Task<bool> SaveChangesAsync();
     }

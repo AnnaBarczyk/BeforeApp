@@ -1,7 +1,7 @@
-﻿using BeforeApp.Data.Entities;
-using BeforeApp.Data.Entities.Connectors;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BeforeApp.Data.Entities;
+using BeforeApp.Data.Entities.Connectors;
 
 namespace BeforeApp.Data
 {
@@ -21,7 +21,5 @@ namespace BeforeApp.Data
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<PersonMusicGenres> PersonMusicGenres { get; set; }
         public virtual ICollection<User> ConnectedUsers { get; set; }
-
-
     }
 }

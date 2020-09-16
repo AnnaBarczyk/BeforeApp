@@ -1,23 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BeforeApp.Data.Repositories;
+﻿using AutoMapper;
 using BeforeApp.Data.Entities;
-using AutoMapper;
-using System.Security.Cryptography;
-using System.Runtime.CompilerServices;
+using BeforeApp.Data.Repositories;
 using BeforeApp.Models;
+using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Services
 {
-    public class EventService: IEventService
+    public class EventService : IEventService
     {
-        private readonly IEventRepository _repository;
         private readonly IMapper _mapper;
-        public EventService(IEventRepository repository, IMapper mapper )
+        private readonly IEventRepository _repository;
+
+        public EventService(IEventRepository repository, IMapper mapper)
         {
             _mapper = mapper;
             _repository = repository;
@@ -29,13 +23,28 @@ namespace BeforeApp.Data.Services
             _repository.Add(newEvent);
         }
 
-        public EventModel Update(EventModel model,int id)
+        public async Task<EventModel[]> Get()
         {
+            var results = await _repository.GetAllEventsAsync();
+
+            return _mapper.Map<EventModel[]>(results);
+        }
+
+        public async Task<EventModel> Update(EventModel model, int id)
+        {
+
             var updated = _mapper.Map<Event>(model);
             updated.Id = id;
-            _repository.UpdateEntity(updated);
+            if (!await _repository.UpdateEntity(updated)) return null;
 
             return _mapper.Map<EventModel>(updated);
+        }
+
+        public async Task<Event> GetByMonikerAsync(string moniker) 
+        {
+            var eventByMoniker = await _repository.GetEventByMonikerAsync(moniker);
+            if (eventByMoniker == null) return null;
+            else return eventByMoniker;
         }
     }
 }

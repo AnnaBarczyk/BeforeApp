@@ -21,6 +21,7 @@ namespace BeforeApp.Data
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Location> Locations { get; set; }
+
         public DbSet<MusicGenre> MusicGenres { get; set; }
         ////
         //public DbSet<Person> Persons { get; set; }
@@ -32,41 +33,38 @@ namespace BeforeApp.Data
 
         protected override void OnModelCreating(ModelBuilder bldr)
         {
-
-          
-
             var locations = new List<Location>
             {
-                new Location() {
-                Id = 1,
-                Name = "Plener",
-                City = "Warszawa",
-                Adress = "Ul. Jeden",
-                },
-                new Location()
+                new Location
                 {
-                Id = 2,
-                Name = "Dom",
-                City = "Lodz",
-                Adress = "Off",
+                    Id = 1,
+                    Name = "Plener",
+                    City = "Warszawa",
+                    Adress = "Ul. Jeden"
+                },
+                new Location
+                {
+                    Id = 2,
+                    Name = "Dom",
+                    City = "Lodz",
+                    Adress = "Off"
                 }
             };
 
 
             var events = new List<Event>
             {
-
-                new Event(){
-                Id = 1,
-                Moniker = "tekk2020waw",
-                Name = "Tekk",
-                EventDate = new DateTime(2020, 10, 18),
-                // Location = locations[0],
-                LocationId = locations[0].Id
-                
+                new Event
+                {
+                    Id = 1,
+                    Moniker = "tekk2020waw",
+                    Name = "Tekk",
+                    EventDate = new DateTime(2020, 10, 18),
+                    // Location = locations[0],
+                    LocationId = locations[0].Id
                 },
 
-                new Event()
+                new Event
                 {
                     Id = 2,
                     Moniker = "Orga202ldz",
@@ -75,12 +73,11 @@ namespace BeforeApp.Data
                     //Location = locations[1],
                     LocationId = locations[1].Id
                 }
-
             };
 
             var persons = new List<Person>
             {
-                new User()
+                new User
                 {
                     Id = 1,
                     Email = "technochlopak@elo.pl",
@@ -88,63 +85,66 @@ namespace BeforeApp.Data
                     Birthdate = new DateTime(1985, 01, 18),
                     Sex = "Male",
                     Orientation = "Straight",
-                   Description = "Siema elo 520"
+                    Description = "Siema elo 520"
                 },
-                new User()
+                new User
                 {
-                Id = 2,
-                Email = "technolaska@elo.pl",
-                Nickname = "Ziomalka",
-                Birthdate = new DateTime(1994, 01, 18),
-                Sex = "Female",
-                Orientation = "Bi",
-                Description = "<3"
+                    Id = 2,
+                    Email = "technolaska@elo.pl",
+                    Nickname = "Ziomalka",
+                    Birthdate = new DateTime(1994, 01, 18),
+                    Sex = "Female",
+                    Orientation = "Bi",
+                    Description = "<3"
                 },
 
-                new Admin()
+                new Admin
                 {
-                Id = 3,
-                Email = "admin@elo.pl",
-                Nickname = "Admin",
-                Birthdate = new DateTime(1994, 01, 18),
-                Sex = "Female",
-                Orientation = "Bi",
-                Description = "<3"
+                    Id = 3,
+                    Email = "admin@elo.pl",
+                    Nickname = "Admin",
+                    Birthdate = new DateTime(1994, 01, 18),
+                    Sex = "Female",
+                    Orientation = "Bi",
+                    Description = "<3"
                 }
             };
 
             var musicGenres = new List<MusicGenre>
             {
-                new MusicGenre(){
-                Id = 1,
-                Name = "Techno"
+                new MusicGenre
+                {
+                    Id = 1,
+                    Name = "Techno"
                 },
 
-                new MusicGenre(){
-                Id = 2,
-                Name = "House"
+                new MusicGenre
+                {
+                    Id = 2,
+                    Name = "House"
                 },
 
-                new MusicGenre(){
-                Id = 3,
-                Name = "Folk"
+                new MusicGenre
+                {
+                    Id = 3,
+                    Name = "Folk"
                 }
             };
 
 
             var eventMusicGenres = new List<EventMusicGenres>
             {
-                new EventMusicGenres()
+                new EventMusicGenres
                 {
                     EventId = 1,
                     MusicGenreId = 1
                 },
-                new EventMusicGenres()
+                new EventMusicGenres
                 {
                     EventId = 1,
                     MusicGenreId = 2
                 },
-                new EventMusicGenres()
+                new EventMusicGenres
                 {
                     EventId = 2,
                     MusicGenreId = 2
@@ -153,19 +153,19 @@ namespace BeforeApp.Data
 
             var personMusicGenres = new List<PersonMusicGenres>
             {
-                new PersonMusicGenres()
+                new PersonMusicGenres
                 {
                     PersonId = 1,
                     MusicGenreId = 1
                 },
 
-                new PersonMusicGenres()
+                new PersonMusicGenres
                 {
                     PersonId = 1,
                     MusicGenreId = 2
                 },
 
-                 new PersonMusicGenres()
+                new PersonMusicGenres
                 {
                     PersonId = 2,
                     MusicGenreId = 2
@@ -173,11 +173,9 @@ namespace BeforeApp.Data
             };
 
 
-
-
             // Many-to-many relation between event and music genre
             bldr.Entity<EventMusicGenres>()
-                .HasKey(t => new { t.EventId, t.MusicGenreId });
+                .HasKey(t => new {t.EventId, t.MusicGenreId});
 
             bldr.Entity<EventMusicGenres>()
                 .HasOne(pt => pt.Event)
@@ -191,7 +189,7 @@ namespace BeforeApp.Data
 
             // Many-to-many relation between person and music genres
             bldr.Entity<PersonMusicGenres>()
-                .HasKey(a => new { a.PersonId, a.MusicGenreId });
+                .HasKey(a => new {a.PersonId, a.MusicGenreId});
 
             bldr.Entity<PersonMusicGenres>()
                 .HasOne(ba => ba.Person)
@@ -205,16 +203,11 @@ namespace BeforeApp.Data
 
             bldr.Entity<Location>().HasData(locations);
             bldr.Entity<Event>().HasData(events);
-            foreach (var person in persons)
-            {
-                bldr.Entity(person.GetType()).HasData(person);
-            }
-            
+            foreach (var person in persons) bldr.Entity(person.GetType()).HasData(person);
+
             bldr.Entity<MusicGenre>().HasData(musicGenres);
             bldr.Entity<EventMusicGenres>().HasData(eventMusicGenres);
             bldr.Entity<PersonMusicGenres>().HasData(personMusicGenres);
-
-            
         }
     }
 }

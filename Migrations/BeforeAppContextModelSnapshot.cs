@@ -32,23 +32,6 @@ namespace BeforeApp.Migrations
                     b.HasIndex("MusicGenreId");
 
                     b.ToTable("EventMusicGenres");
-
-                    b.HasData(
-                        new
-                        {
-                            EventId = 1,
-                            MusicGenreId = 1
-                        },
-                        new
-                        {
-                            EventId = 1,
-                            MusicGenreId = 2
-                        },
-                        new
-                        {
-                            EventId = 2,
-                            MusicGenreId = 2
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Entities.Connectors.PersonMusicGenres", b =>
@@ -64,23 +47,6 @@ namespace BeforeApp.Migrations
                     b.HasIndex("MusicGenreId");
 
                     b.ToTable("PersonMusicGenres");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 1,
-                            MusicGenreId = 1
-                        },
-                        new
-                        {
-                            PersonId = 1,
-                            MusicGenreId = 2
-                        },
-                        new
-                        {
-                            PersonId = 2,
-                            MusicGenreId = 2
-                        });
                 });
 
             modelBuilder.Entity("BeforeApp.Data.Entities.Event", b =>
