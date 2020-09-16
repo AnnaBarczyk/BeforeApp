@@ -100,17 +100,33 @@ namespace BeforeApp.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("byid/{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                var oldEvent = await _repository.GetById(id);
+                var oldEvent = await _eventService.GetEventByAsync(id);
                 if (oldEvent == null) return NotFound("Event not found");
 
-                _repository.Delete(id);
+                if (await _eventService.Delete(id)) return Ok("Deleted");
 
-                if (await _repository.SaveChangesAsync()) return Ok("Deleted");
+                return BadRequest("Not Able to delete");
+            }
+            catch (Exception)
+            {
+                return BadRequest("failed to delete");
+            }
+        }
+
+        [HttpDelete("{moniker}")]
+        public async Task<ActionResult> Delete(string moniker)
+        {
+            try
+            {
+                var oldEvent = await _eventService.GetEventByAsync(moniker);
+                if (oldEvent == null) return NotFound("Event not found");
+
+                if (await _eventService.Delete(moniker)) return Ok("Deleted");
 
                 return BadRequest("Not Able to delete");
             }
@@ -125,10 +141,10 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var old = await _eventService.GetByAsync(moniker);
-                if (old == null) return NotFound($"Event with moniker {moniker} could not be found.");
+                var id = await _eventService.GetIdByMonikerAsync(moniker);
+                if (id <= 0) return NotFound($"Event with moniker {moniker} could not be found.");
 
-                var updated = await _eventService.Update(model, old.Id);
+                var updated = await _eventService.Update(model, id);
                 if (updated == null) return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
 
                 return updated;

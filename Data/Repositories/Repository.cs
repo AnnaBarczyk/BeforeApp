@@ -24,12 +24,14 @@ namespace BeforeApp.Data.Repositories
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public void Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             var entity = table.Find(id);
             _context.Remove(entity);
             _logger.LogInformation($"Removing an object of type {entity.GetType()} from the context.");
+            return (await _context.SaveChangesAsync()) > 0;
         }
+
 
         public async Task<T> GetById(int id)
         {

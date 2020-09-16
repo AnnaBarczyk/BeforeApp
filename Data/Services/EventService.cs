@@ -42,11 +42,11 @@ namespace BeforeApp.Data.Services
             return _mapper.Map<EventModel>(updated);
         }
 
-        public async Task<Event> GetEventByAsync(string moniker) 
+        public async Task<EventModel> GetEventByAsync(string moniker) 
         {
             var eventByMoniker = await _repository.GetEventByMonikerAsync(moniker);
             if (eventByMoniker == null) return null;
-            else return eventByMoniker;
+            else return _mapper.Map<EventModel>(eventByMoniker);
         }
 
         public async Task<EventModel> GetEventByAsync(int id)
@@ -65,5 +65,25 @@ namespace BeforeApp.Data.Services
 
         }
 
+        public async Task<bool> Delete(int id)
+        {
+           return await _repository.Delete(id);
+        }
+
+        public async Task<bool> Delete(string moniker)
+        {
+            var eventTodelete = await _repository.GetEventByMonikerAsync(moniker);
+            var id = eventTodelete.Id;
+
+            return await _repository.Delete(id);
+        }
+
+        public async Task<int> GetIdByMonikerAsync(string moniker)
+        {
+            var resultEvent = await _repository.GetEventByMonikerAsync(moniker);
+            if (resultEvent == null) return 0;
+
+            return resultEvent.Id;
+        }
     }
 }

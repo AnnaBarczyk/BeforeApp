@@ -6,7 +6,7 @@ namespace BeforeApp.Data.Repositories
     {
         // General add delete
         Task<bool> Add(T entity);
-        void Delete(int id);
+        Task<bool> Delete(int id);
 
         Task<T> GetById(int id);
 

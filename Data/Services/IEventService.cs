@@ -1,4 +1,4 @@
-﻿using BeforeApp.Data.Entities;
+﻿
 using BeforeApp.Models;
 using System;
 using System.Threading.Tasks;
@@ -13,7 +13,13 @@ namespace BeforeApp.Data.Services
         public Task<EventModel> GetEventByAsync(string moniker);
         public Task<EventModel> GetEventByAsync(int id);
 
+        public Task<int> GetIdByMonikerAsync(string moniker);
+
         public Task<EventModel[]> GetEventsByParameters(string name, DateTime? dateTime, string locationName,
             string locationCity, string music,string artist);
+
+        public Task<bool> Delete(int id);
+        public Task<bool> Delete(string moniker);
+
     }
 }
