@@ -17,10 +17,11 @@ namespace BeforeApp.Data.Repositories
             table = _context.Set<T>();
         }
 
-        public void Add(T entity)
+        public async Task<bool> Add(T entity)
         {
             _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
             _context.Add(entity);
+            return (await _context.SaveChangesAsync()) > 0;
         }
 
         public void Delete(int id)

@@ -86,17 +86,11 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var existing = await _repository.GetEventByMonikerAsync(model.Moniker);
+                var existing = await _eventService.GetEventByAsync(model.Moniker);
                 if (existing != null) return BadRequest("Moniker in use already!");
 
-                _eventService.Add(model);
-
-                // wersja bez services --> bezpośrednio w kontrolerze
-                //var newEvent = _mapper.Map<Event>(model);
-                //_repository.Add(newEvent);
-
-                if (await _repository.SaveChangesAsync())
-                    return Created($"/api/events/{model.Moniker}", _mapper.Map<EventModel>(model));
+                if (await _eventService.Add(model))
+                    return Created($"/api/events/{model.Moniker}", model);
             }
             catch (Exception)
             {

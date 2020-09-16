@@ -18,10 +18,11 @@ namespace BeforeApp.Data.Services
             _repository = repository;
         }
 
-        public void Add(EventModel model)
+        public async Task<bool> Add(EventModel model)
         {
             var newEvent = _mapper.Map<Event>(model);
-            _repository.Add(newEvent);
+            
+            return await _repository.Add(newEvent);
         }
 
         public async Task<EventModel[]> GetAll()

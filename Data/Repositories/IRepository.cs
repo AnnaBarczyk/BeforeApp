@@ -5,7 +5,7 @@ namespace BeforeApp.Data.Repositories
     public interface IRepository<T> where T : class
     {
         // General add delete
-        void Add(T entity);
+        Task<bool> Add(T entity);
         void Delete(int id);
 
         Task<T> GetById(int id);
