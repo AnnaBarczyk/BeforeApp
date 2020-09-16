@@ -9,6 +9,7 @@ namespace BeforeApp.Data.Services
         public void Add(EventModel model);
         public Task<EventModel> Update(EventModel model, int id);
         public Task<EventModel[]> Get();
-        public Task<Event> GetByMonikerAsync(string moniker);
+        public Task<EventModel> GetByAsync(string moniker);
+        public Task<EventModel> GetByAsync(int id);
     }
 }

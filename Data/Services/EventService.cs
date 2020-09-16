@@ -40,11 +40,19 @@ namespace BeforeApp.Data.Services
             return _mapper.Map<EventModel>(updated);
         }
 
-        public async Task<Event> GetByMonikerAsync(string moniker) 
+        public async Task<Event> GetByAsync(string moniker) 
         {
             var eventByMoniker = await _repository.GetEventByMonikerAsync(moniker);
             if (eventByMoniker == null) return null;
             else return eventByMoniker;
         }
+
+        public async Task<EventModel> GetByAsync(int id)
+        {
+            var result = await _repository.GetById(id);
+            if (result == null) return null;
+            return _mapper.Map<EventModel>(result);
+        }
+
     }
 }

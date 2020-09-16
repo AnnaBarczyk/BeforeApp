@@ -37,9 +37,9 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var result = await _repository.GetById(id);
+                var result = await _eventService.GetByAsync(id);
                 if (result == null) return NotFound();
-                return _mapper.Map<EventModel>(result);
+                return result;
             }
             catch (Exception)
             {
@@ -124,7 +124,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var old = await _eventService.GetByMonikerAsync(moniker);
+                var old = await _eventService.GetByAsync(moniker);
                 if (old == null) return NotFound($"Event with moniker {moniker} could not be found.");
 
                 var updated = await _eventService.Update(model, old.Id);
