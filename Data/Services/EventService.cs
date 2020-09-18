@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BeforeApp.Data.Entities;
-using BeforeApp.Data.Repositories;
 using BeforeApp.Data.UnitOfWork;
 using BeforeApp.Models;
 using System;
@@ -12,13 +11,11 @@ namespace BeforeApp.Data.Services
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IEventRepository _repository;
 
-        public EventService(IEventRepository repository, IMapper mapper, IUnitOfWork unitOfWork)
+        public EventService(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _repository = repository;
         }
 
         public async Task<bool> Add(EventModel model)
