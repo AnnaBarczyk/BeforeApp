@@ -8,10 +8,10 @@ namespace BeforeApp.Data.Services
     public interface IEventService
     {
         public Task<bool> Add(EventModel model);
-        public Task<EventModel> Update(EventModel model, int id);
-        public Task<EventModel[]> GetAll();
-        public Task<EventModel> GetEventByAsync(string moniker);
-        public Task<EventModel> GetEventByAsync(int id);
+        public Task<EventModel> UpdateEntity(EventModel model, int id);
+        public Task<EventModel[]> GetAllEventsAsync();
+        public Task<EventModel> GetEventByMonikerAsync(string moniker);
+        public Task<EventModel> GetEventByIdAsync(int id);
 
         public Task<int> GetIdByMonikerAsync(string moniker);
 

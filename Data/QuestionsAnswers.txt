@@ -12,3 +12,5 @@ Czy Tr except to dobra praktyka?
 .....
 
 Gdzie SaveChanges na przyładnie Event Controleera i metody PUT..
+Jak dokłądnie nazwać podziały z wykorzystaniem prawidłowych nazw np. Domain
+Czy w UoW Save ma być async? 

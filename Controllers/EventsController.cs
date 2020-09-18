@@ -24,7 +24,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                return await _eventService.GetAll();
+                return await _eventService.GetAllEventsAsync();
             }
             catch (Exception)
             {
@@ -37,7 +37,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var result = await _eventService.GetEventByAsync(id);
+                var result = await _eventService.GetEventByIdAsync(id);
                 if (result == null) return NotFound();
                 return result;
             }
@@ -52,7 +52,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var result = await _eventService.GetEventByAsync(moniker);
+                var result = await _eventService.GetEventByMonikerAsync(moniker);
                 if (result == null) return NotFound();
                 return result;
             }
@@ -86,7 +86,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var existing = await _eventService.GetEventByAsync(model.Moniker);
+                var existing = await _eventService.GetEventByMonikerAsync(model.Moniker);
                 if (existing != null) return BadRequest("Moniker in use already!");
 
                 if (await _eventService.Add(model))
@@ -105,7 +105,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var oldEvent = await _eventService.GetEventByAsync(id);
+                var oldEvent = await _eventService.GetEventByIdAsync(id);
                 if (oldEvent == null) return NotFound("Event not found");
 
                 if (await _eventService.Delete(id)) return Ok("Deleted");
@@ -123,7 +123,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var oldEvent = await _eventService.GetEventByAsync(moniker);
+                var oldEvent = await _eventService.GetEventByMonikerAsync(moniker);
                 if (oldEvent == null) return NotFound("Event not found");
 
                 if (await _eventService.Delete(moniker)) return Ok("Deleted");
@@ -144,7 +144,7 @@ namespace BeforeApp.Controllers
                 var id = await _eventService.GetIdByMonikerAsync(moniker);
                 if (id <= 0) return NotFound($"Event with moniker {moniker} could not be found.");
 
-                var updated = await _eventService.Update(model, id);
+                var updated = await _eventService.UpdateEntity(model, id);
                 if (updated == null) return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
 
                 return updated;

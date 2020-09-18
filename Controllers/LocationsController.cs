@@ -67,7 +67,7 @@ namespace BeforeApp.Controllers
             try
             {
                 var newLocation = _mapper.Map<Location>(model);
-                _repository.Add(newLocation);
+                await _repository.Add(newLocation);
 
                 if (await _repository.SaveChangesAsync())
                 { 
@@ -91,7 +91,7 @@ namespace BeforeApp.Controllers
                 var oldLocaction = await _repository.GetById(id);
                 if (oldLocaction == null) return NotFound("Location not found");
 
-                _repository.Delete(id);
+                await _repository.Delete(id);
 
                 if (await _repository.SaveChangesAsync())
                 {

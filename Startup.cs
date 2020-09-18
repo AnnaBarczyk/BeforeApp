@@ -2,6 +2,7 @@ using AutoMapper;
 using BeforeApp.Data;
 using BeforeApp.Data.Repositories;
 using BeforeApp.Data.Services;
+using BeforeApp.Data.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace BeforeApp
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));
 
