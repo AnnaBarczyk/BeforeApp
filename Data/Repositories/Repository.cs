@@ -21,7 +21,9 @@ namespace BeforeApp.Data.Repositories
         public async Task<bool> AddAsync(T entity)
         {
             _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
+
             await _context.AddAsync(entity);
+
             return true;
         }
 

@@ -21,9 +21,12 @@ namespace BeforeApp.Data.Entities
 
         public string Name { get; set; }
         public DateTime EventDate { get; set; }
+
         public Location Location { get; set; }
 
-        [ForeignKey("Location")] public int LocationId { get; set; }
+        [Required]
+        [ForeignKey("Location")] 
+        public int LocationId { get; set; }
 
         public Person Publisher { get; set; }
         public virtual ICollection<User> UsersAttending { get; set; }

@@ -21,6 +21,13 @@ namespace BeforeApp.Data.Services
         public async Task<int> Add(EventModel model)
         {
             var newEvent = _mapper.Map<Event>(model);
+
+            if (newEvent.Location.Id == 0)
+            {
+
+                newEvent.Location = await _unitOfWork.Locations.GetById(model.LocationId);
+
+            }
             
             await _unitOfWork.Events.AddAsync(newEvent);
 

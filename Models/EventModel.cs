@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using BeforeApp.Data;
 using BeforeApp.Data.Entities;
 
@@ -17,6 +18,10 @@ namespace BeforeApp.Models
 
         [Required] public DateTime EventDate { get; set; }
 
+        [Required]
+        [ForeignKey("Location")] public int LocationId { get; set; }
+
+        
         public Location Location { get; set; }
         public Person Publisher { get; set; }
         public ICollection<Person> UsersAttending { get; set; }
