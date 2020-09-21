@@ -18,11 +18,13 @@ namespace BeforeApp.Data.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> Add(EventModel model)
+        public async Task<int> Add(EventModel model)
         {
             var newEvent = _mapper.Map<Event>(model);
             
-            return await _unitOfWork.Events.Add(newEvent);
+            await _unitOfWork.Events.AddAsync(newEvent);
+
+            return await _unitOfWork.Commit();
         }
 
         public async Task<EventModel[]> GetAllEventsAsync()
@@ -37,7 +39,9 @@ namespace BeforeApp.Data.Services
 
             var updated = _mapper.Map<Event>(model);
             updated.Id = id;
-            if (!await _unitOfWork.Events.UpdateEntity(updated)) return null;
+            _unitOfWork.Events.UpdateEntity(updated);
+
+            if (await _unitOfWork.Commit() == 0) return null;
 
             return _mapper.Map<EventModel>(updated);
         }
@@ -67,15 +71,16 @@ namespace BeforeApp.Data.Services
 
         public async Task<bool> Delete(int id)
         {
-           return await _unitOfWork.Events.Delete(id);
+            _unitOfWork.Events.Delete(id);
+            return await _unitOfWork.Commit() > 0;
         }
 
         public async Task<bool> Delete(string moniker)
         {
             var eventTodelete = await _unitOfWork.Events.GetEventByMonikerAsync(moniker);
             var id = eventTodelete.Id;
-
-            return await _unitOfWork.Events.Delete(id);
+            _unitOfWork.Events.Delete(id);
+            return await _unitOfWork.Commit() > 0;
         }
 
         public async Task<int> GetIdByMonikerAsync(string moniker)

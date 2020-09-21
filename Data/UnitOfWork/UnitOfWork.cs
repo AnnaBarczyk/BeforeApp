@@ -2,6 +2,7 @@
 using BeforeApp.Data.Repositories;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace BeforeApp.Data.UnitOfWork
 {
@@ -23,9 +24,9 @@ namespace BeforeApp.Data.UnitOfWork
         }
 
 
-        public int Commit()
+        public async Task<int> Commit()
         {
-           return _context.SaveChanges();
+           return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

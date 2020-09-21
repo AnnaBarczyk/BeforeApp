@@ -7,7 +7,7 @@ namespace BeforeApp.Data.Services
 {
     public interface IEventService
     {
-        public Task<bool> Add(EventModel model);
+        public Task<int> Add(EventModel model);
         public Task<EventModel> UpdateEntity(EventModel model, int id);
         public Task<EventModel[]> GetAllEventsAsync();
         public Task<EventModel> GetEventByMonikerAsync(string moniker);

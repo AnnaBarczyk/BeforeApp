@@ -67,12 +67,12 @@ namespace BeforeApp.Controllers
             try
             {
                 var newLocation = _mapper.Map<Location>(model);
-                await _repository.Add(newLocation);
+                await _repository.AddAsync(newLocation);
 
-                if (await _repository.SaveChangesAsync())
-                { 
-                    return Created($"/api/locations/{newLocation.Id}", _mapper.Map<LocationModel>(model));
-                }
+                //if (await _repository.SaveChangesAsync())
+                //{ 
+                //    return Created($"/api/locations/{newLocation.Id}", _mapper.Map<LocationModel>(model));
+                //}
             }
             catch (Exception)
             {
@@ -91,12 +91,12 @@ namespace BeforeApp.Controllers
                 var oldLocaction = await _repository.GetById(id);
                 if (oldLocaction == null) return NotFound("Location not found");
 
-                await _repository.Delete(id);
+                // await _repository.Delete(id);
 
-                if (await _repository.SaveChangesAsync())
-                {
-                    return Ok("Deleted");
-                }
+                //if (await _repository.SaveChangesAsync())
+                //{
+                //    return Ok("Deleted");
+                //}
 
                 return BadRequest("Not Able to delete");
             }

@@ -89,7 +89,7 @@ namespace BeforeApp.Controllers
                 var existing = await _eventService.GetEventByMonikerAsync(model.Moniker);
                 if (existing != null) return BadRequest("Moniker in use already!");
 
-                if (await _eventService.Add(model))
+                if (await _eventService.Add(model)>0)
                     return Created($"/api/events/{model.Moniker}", model);
             }
             catch (Exception)

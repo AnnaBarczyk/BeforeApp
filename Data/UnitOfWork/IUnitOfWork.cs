@@ -11,6 +11,6 @@ namespace BeforeApp.Data.UnitOfWork
     {
         IEventRepository Events { get; }
         ILocationRepository Locations { get; }
-        public int Commit();
+        public Task<int> Commit();
     }
 }

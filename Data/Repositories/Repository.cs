@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -17,19 +18,18 @@ namespace BeforeApp.Data.Repositories
             table = _context.Set<T>();
         }
 
-        public async Task<bool> Add(T entity)
+        public async Task<bool> AddAsync(T entity)
         {
             _logger.LogInformation($"Adding an object of type {entity.GetType()} to the context.");
-            _context.Add(entity);
-            return (await _context.SaveChangesAsync()) > 0;
+            await _context.AddAsync(entity);
+            return true;
         }
 
-        public async Task<bool> Delete(int id)
+        public void Delete(int id)
         {
             var entity = table.Find(id);
             _context.Remove(entity);
             _logger.LogInformation($"Removing an object of type {entity.GetType()} from the context.");
-            return (await _context.SaveChangesAsync()) > 0;
         }
 
 
@@ -43,12 +43,7 @@ namespace BeforeApp.Data.Repositories
             return await table.ToArrayAsync();
         }
 
-        public async Task<bool> SaveChangesAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
-
-        public async Task<bool> UpdateEntity(T entity)
+        public void UpdateEntity(T entity)
         {
             _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
 
@@ -56,8 +51,6 @@ namespace BeforeApp.Data.Repositories
             var updatedEntity = _context.Entry(entity);
  
             updatedEntity.State = EntityState.Modified;
-
-           return (await _context.SaveChangesAsync()) > 0;
 
         }
     }
