@@ -4,14 +4,16 @@ using BeforeApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeforeApp.Migrations
 {
     [DbContext(typeof(BeforeAppContext))]
-    partial class BeforeAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200922113952_AddMonikerLocationAndNewData")]
+    partial class AddMonikerLocationAndNewData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

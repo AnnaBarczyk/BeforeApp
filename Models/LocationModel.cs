@@ -11,5 +11,6 @@ namespace BeforeApp.Models
         public string City { get; set; }
         public string Adress { get; set; }
         public ICollection<Event> Events { get; set; }
+        public string Moniker { get; set; }
     }
 }
