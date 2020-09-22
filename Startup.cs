@@ -24,6 +24,7 @@ namespace BeforeApp
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));

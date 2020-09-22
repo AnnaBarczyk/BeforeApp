@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using BeforeApp.Data.Entities;
 using BeforeApp.Data.Repositories;
+using BeforeApp.Data.Services;
 using BeforeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BeforeApp.Controllers
@@ -16,13 +16,11 @@ namespace BeforeApp.Controllers
     [ApiController]
     public class LocationsController: ControllerBase
     {
-        private readonly ILocationRepository _repository;
-        private readonly IMapper _mapper;
+        private readonly ILocationService _locationService;
 
-        public LocationsController(ILocationRepository repository, IMapper mapper)
+        public LocationsController(ILocationService locationService)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _locationService = locationService;
         }
 
 
@@ -31,9 +29,7 @@ namespace BeforeApp.Controllers
         {
             try
             {
-                var results = await _repository.GetAllAsync();
-
-                return _mapper.Map<LocationModel[]>(results);
+                return await _locationService.GetAllLocationsAsync();
 
             }
             catch (Exception)
@@ -43,69 +39,125 @@ namespace BeforeApp.Controllers
         }
 
         [HttpGet("byid/{id:int}")]
-        public async Task<ActionResult<LocationModel>> GetLocaiotnById(int id)
+        public async Task<ActionResult<LocationModel>> GetLocationById(int id)
         {
 
             try
             {
-                var result = await _repository.GetById(id);
+                var result = await _locationService.GetLocationByIdAsync(id);
                 if (result == null) return NotFound();
-                return _mapper.Map<LocationModel>(result);
+                return result;
             }
             catch (Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
 
+        }
+
+        [HttpGet("{moniker}")]
+        public async Task<ActionResult<LocationModel>> GetLocationByMoniker(string moniker)
+        {
+            try
+            {
+                var result = await _locationService.GetLocationByMonikerAsync(moniker);
+                if (result == null) return NotFound();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<LocationModel[]>> SearchByVarious(string name, string locationCity, string adress)
+        {
+            try
+            {
+                var results = await _locationService.GetLocationsByParameters(name, locationCity, adress);
+                if (!results.Any()) return NotFound();
+                return results;
+
+            }
+            catch (Exception)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<LocationModel>> AddEvent(LocationModel model)
+        public async Task<ActionResult<LocationModel>> AddLocation(LocationModel model)
         {
 
             try
             {
-                var newLocation = _mapper.Map<Location>(model);
-                await _repository.AddAsync(newLocation);
-
-                //if (await _repository.SaveChangesAsync())
-                //{ 
-                //    return Created($"/api/locations/{newLocation.Id}", _mapper.Map<LocationModel>(model));
-                //}
+                var existing = await _locationService.GetLocationByMonikerAsync(model.Moniker);
+                if (existing != null) return BadRequest("Moniker is in use");
+                if (await _locationService.Add(model) > 0) return Created($"/api/locations/{model.Moniker}", model);
             }
             catch (Exception)
             {
 
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
-
             return BadRequest();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("byId/{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                var oldLocaction = await _repository.GetById(id);
+                var oldLocaction = await _locationService.GetLocationByIdAsync(id);
                 if (oldLocaction == null) return NotFound("Location not found");
-
-                // await _repository.Delete(id);
-
-                //if (await _repository.SaveChangesAsync())
-                //{
-                //    return Ok("Deleted");
-                //}
+                if (await _locationService.Delete(id)) return Ok("Deleted");
 
                 return BadRequest("Not Able to delete");
             }
             catch (Exception)
             {
-
-                return BadRequest("failed to delete");
+                return BadRequest("Failed to delete");
             }
+        }
 
+        [HttpDelete("{moniker}")]
+        public async Task<ActionResult> Delete(string moniker)
+        {
+            try
+            {
+                var oldLocation = await _locationService.GetLocationByMonikerAsync(moniker);
+                if (oldLocation == null) return NotFound("Location not found");
+                if (await _locationService.Delete(moniker)) return Ok("Deleted");
+
+                return BadRequest("Not able to delete");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to delete");
+            }
+        }
+
+        [HttpPut("{moniker}")]
+        public async Task<ActionResult<LocationModel>> UpdateLocation(LocationModel model, string moniker)
+        {
+            try
+            {
+                var id = await _locationService.GetIdByMonikerAsync(moniker);
+                if (id <= 0) return NotFound($"Location with moniker {moniker} could not be found");
+                var updated = await _locationService.UpdateEntity(model, id);
+                if (updated ==  null) return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+
+                return updated;
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("Failed to update");
+            }
         }
     }
 }
