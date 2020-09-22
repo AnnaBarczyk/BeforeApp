@@ -42,34 +42,46 @@ namespace BeforeApp.Data.Services
             return await _unitOfWork.Commit() > 0;
         }
 
-        public Task<LocationModel[]> GetAllLocationsAsync()
+        public async Task<LocationModel[]> GetAllLocationsAsync()
         {
-            throw new NotImplementedException();
+            var results = await _unitOfWork.Locations.GetAllLocationsIncludeEventsAsync();
+            return _mapper.Map<LocationModel[]>(results);
         }
 
-        public Task<int> GetIdByMonikerAsync(string moniker)
+        public async Task<int> GetIdByMonikerAsync(string moniker)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.Locations.GetLocationByMonikerAsync(moniker);
+            if (result == null) return 0;
+            return result.Id;
         }
 
-        public Task<LocationModel> GetLocationByIdAsync(int id)
+        public async Task<LocationModel> GetLocationByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.Locations.GetById(id);
+            if (result == null) return null;
+            return _mapper.Map<LocationModel>(result);
         }
 
-        public Task<LocationModel> GetLocationByMonikerAsync(string moniker)
+        public async Task<LocationModel> GetLocationByMonikerAsync(string moniker)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.Locations.GetLocationByMonikerAsync(moniker);
+            if (result == null) return null;
+            return _mapper.Map<LocationModel>(result);
         }
 
-        public Task<LocationModel[]> GetLocationsByParameters(string name, string locationCity, string adress)
+        public async Task<LocationModel[]> GetLocationsByParameters(string name, string locationCity, string adress)
         {
-            throw new NotImplementedException();
+            var results = await _unitOfWork.Locations.GetLocationsByParameters(name, locationCity, adress);
+            return _mapper.Map<LocationModel[]>(results);
         }
 
-        public Task<LocationModel> UpdateEntity(LocationModel model, int id)
+        public async Task<LocationModel> UpdateEntity(LocationModel model, int id)
         {
-            throw new NotImplementedException();
+            var updated = _mapper.Map<Location>(model);
+            updated.Id = id;
+            _unitOfWork.Locations.UpdateEntity(updated);
+            if (await _unitOfWork.Commit() == 0) return null;
+            return _mapper.Map<LocationModel>(updated);
         }
     }
 }
