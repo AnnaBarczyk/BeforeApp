@@ -38,9 +38,9 @@ namespace BeforeApp.Data
                 new Location
                 {
                     Id = 1,
-                    Name = "Plener",
-                    City = "Warszawa",
-                    Adress = "Ul. Jeden"
+                    Name = "Unknown Location",
+                    City = "Unknown",
+                    Adress = "Unknown"
                 },
                 new Location
                 {
@@ -48,7 +48,14 @@ namespace BeforeApp.Data
                     Name = "Dom",
                     City = "Lodz",
                     Adress = "Off"
-                }
+                },
+                                new Location
+                {
+                    Id = 3,
+                    Name = "Plener",
+                    City = "Warszawa",
+                    Adress = "Ul. Jeden"
+                },
             };
 
 
