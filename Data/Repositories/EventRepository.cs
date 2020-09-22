@@ -15,7 +15,7 @@ namespace BeforeApp.Data.Repositories
         }
 
 
-        public async Task<Event[]> GetAllEventsAsync()
+        public async Task<Event[]> GetAllEventsIncludeLocationsAsync()
         {
             _logger.LogInformation("Getting all Events");
 
@@ -41,7 +41,7 @@ namespace BeforeApp.Data.Repositories
             return await query.ToArrayAsync();
         }
 
-        public async Task<Event> GetEventByIdAsync(int eventId)
+        public async Task<Event> GetEventByIdIncludeLocationAsync(int eventId)
         {
             _logger.LogInformation($"Getting a Event for {eventId}");
 

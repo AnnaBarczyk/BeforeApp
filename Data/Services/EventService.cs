@@ -44,7 +44,7 @@ namespace BeforeApp.Data.Services
 
         public async Task<EventModel[]> GetAllEventsAsync()
         {
-            var results = await _unitOfWork.Events.GetAllEventsAsync();
+            var results = await _unitOfWork.Events.GetAllEventsIncludeLocationsAsync();
 
             return _mapper.Map<EventModel[]>(results);
         }

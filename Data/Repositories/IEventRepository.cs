@@ -12,8 +12,8 @@ namespace BeforeApp.Data.Repositories
         //Task<bool> SaveChangesAsync();
 
         //Events 
-        Task<Event[]> GetAllEventsAsync();
-        Task<Event> GetEventByIdAsync(int eventId);
+        Task<Event[]> GetAllEventsIncludeLocationsAsync();
+        Task<Event> GetEventByIdIncludeLocationAsync(int eventId);
         Task<Event[]> GetAllEventsByDateAsync(DateTime dateTime);
 
         Task<Event> GetEventByMonikerAsync(string moniker);
