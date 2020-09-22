@@ -22,13 +22,21 @@ namespace BeforeApp.Data.Services
         {
             var newEvent = _mapper.Map<Event>(model);
 
-            if (newEvent.Location.Id == 0)
+            if (model.LocationId > 0)
             {
+                var location = await _unitOfWork.Locations.GetById(model.LocationId);
+                if (location != null) newEvent.Location = location;
 
-                newEvent.Location = await _unitOfWork.Locations.GetById(model.LocationId);
-
+                // Location id = 1 stands for "Default/No Location"
+                else newEvent.Location = await _unitOfWork.Locations.GetById(1);            
             }
-            
+            else
+            {
+                // Location id = 1 stands for "Default/No Location"
+                newEvent.Location = await _unitOfWork.Locations.GetById(1);
+            }
+
+
             await _unitOfWork.Events.AddAsync(newEvent);
 
             return await _unitOfWork.Commit();
@@ -46,6 +54,22 @@ namespace BeforeApp.Data.Services
 
             var updated = _mapper.Map<Event>(model);
             updated.Id = id;
+
+            if (model.LocationId > 0)
+            {
+                var location = await _unitOfWork.Locations.GetById(model.LocationId);
+                if (location != null) updated.Location = location;
+
+                // Location id = 1 stands for "Default/No Location"
+                else updated.Location = await _unitOfWork.Locations.GetById(1);
+            }
+            else
+            {
+                // Location id = 1 stands for "Default/No Location"
+                updated.Location = await _unitOfWork.Locations.GetById(1);
+            }
+
+
             _unitOfWork.Events.UpdateEntity(updated);
 
             if (await _unitOfWork.Commit() == 0) return null;
@@ -97,5 +121,6 @@ namespace BeforeApp.Data.Services
 
             return resultEvent.Id;
         }
+
     }
 }

@@ -8,8 +8,11 @@ namespace BeforeApp.Data.Profiles
     {
         public BeforeAppProfile()
         {
-            CreateMap<Event, EventModel>().ReverseMap();
+            CreateMap<Event, EventModel>().
+                //ForMember(i => i.Location, opt => opt.MapFrom(src => src.LocationId)).
+                ReverseMap();
             CreateMap<Location, LocationModel>().ReverseMap();
+
         }
     }
 }
