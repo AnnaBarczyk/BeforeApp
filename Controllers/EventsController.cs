@@ -149,7 +149,7 @@ namespace BeforeApp.Controllers
 
                 return updated;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return BadRequest("Pan błąd");
             }

@@ -3,6 +3,7 @@ using BeforeApp.Data.Entities;
 using BeforeApp.Data.UnitOfWork;
 using BeforeApp.Models;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Services
@@ -52,6 +53,16 @@ namespace BeforeApp.Data.Services
         public async Task<EventModel> UpdateEntity(EventModel model, int id)
         {
 
+            //var old = await _unitOfWork.Events.GetById(id);
+            //var comparison = _mapper.Map<EventModel>(old);
+
+            //var properties = typeof(EventModel).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            //foreach (var property in properties)
+            //{
+            //    property.SetValue(property.GetValue(comparison) ?? property.GetValue(model), model);
+            //}
+
+
             var updated = _mapper.Map<Event>(model);
             updated.Id = id;
 
@@ -73,7 +84,6 @@ namespace BeforeApp.Data.Services
             _unitOfWork.Events.UpdateEntity(updated);
 
             if (await _unitOfWork.Commit() == 0) return null;
-
             return _mapper.Map<EventModel>(updated);
         }
 
