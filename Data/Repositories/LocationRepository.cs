@@ -37,13 +37,12 @@ namespace BeforeApp.Data.Repositories
             return await query.FirstOrDefaultAsync();
         }
 
-        public Task<Location> GetLocationByMonikerAsync(string moniker)
+        public async Task<Location> GetLocationByMonikerAsync(string moniker)
         {
-            // TODO: migration
             _logger.LogInformation($"Getting a Event for Moniker: {moniker}");
 
-            //return await table.AsNoTracking().FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
-            throw new System.NotImplementedException();
+            return await table.AsNoTracking().FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
+           
         }
 
         public async Task<Location[]> GetLocationsByParameters(string name, string locationCity, string adress)

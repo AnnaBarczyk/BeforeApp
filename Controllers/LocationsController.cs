@@ -45,7 +45,7 @@ namespace BeforeApp.Controllers
             try
             {
                 var result = await _locationService.GetLocationByIdAsync(id);
-                if (result == null) return NotFound();
+                if (result == null) return NotFound($"No location with requested Id: {id}");
                 return result;
             }
             catch (Exception)
@@ -61,7 +61,7 @@ namespace BeforeApp.Controllers
             try
             {
                 var result = await _locationService.GetLocationByMonikerAsync(moniker);
-                if (result == null) return NotFound();
+                if (result == null) return NotFound($"No location with requested moniker: {moniker}");
                 return result;
             }
             catch (Exception)

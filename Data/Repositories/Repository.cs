@@ -49,8 +49,10 @@ namespace BeforeApp.Data.Repositories
         {
             _logger.LogInformation($"Updating an object of type {entity.GetType()} to the context.");
 
-            table.Attach(entity);
-            var updatedEntity = _context.Entry(entity);
+            //table.Attach(entity);
+            //var updatedEntity = _context.Entry(entity);
+
+            var updatedEntity = _context.Update(entity);
  
             updatedEntity.State = EntityState.Modified;
 
