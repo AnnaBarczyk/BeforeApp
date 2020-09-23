@@ -32,6 +32,7 @@ namespace BeforeApp.Data
 
         protected override void OnModelCreating(ModelBuilder bldr)
         {
+            // Seeds sample Locations
             var locations = new List<Location>
             {
                 new Location
@@ -57,7 +58,7 @@ namespace BeforeApp.Data
                 },
             };
 
-
+            // Seeds sample Events
             var events = new List<Event>
             {
                 new Event
@@ -81,6 +82,7 @@ namespace BeforeApp.Data
                 }
             };
 
+            // Seeds sample People
             var persons = new List<Person>
             {
                 new User
@@ -116,6 +118,7 @@ namespace BeforeApp.Data
                 }
             };
 
+            // Seeds sample MusicGenres
             var musicGenres = new List<MusicGenre>
             {
                 new MusicGenre
@@ -137,7 +140,7 @@ namespace BeforeApp.Data
                 }
             };
 
-
+            // Seeds sample connectors EventMusicGenres
             var eventMusicGenres = new List<EventMusicGenres>
             {
                 new EventMusicGenres
@@ -157,6 +160,7 @@ namespace BeforeApp.Data
                 }
             };
 
+            // Seeds sample connectors PersonMusicGenres
             var personMusicGenres = new List<PersonMusicGenres>
             {
                 new PersonMusicGenres
@@ -175,6 +179,21 @@ namespace BeforeApp.Data
                 {
                     PersonId = 2,
                     MusicGenreId = 2
+                }
+            };
+            // Seeds sample connectors PersonEvents
+            var personEvents = new List<PersonEvents>
+            {
+                new PersonEvents
+                {
+                    PersonId = 1,
+                    EventId = 1
+                },
+
+                new PersonEvents
+                {
+                    PersonId = 1,
+                    EventId = 2
                 }
             };
 
@@ -230,6 +249,7 @@ namespace BeforeApp.Data
             bldr.Entity<MusicGenre>().HasData(musicGenres);
             bldr.Entity<EventMusicGenres>().HasData(eventMusicGenres);
             bldr.Entity<PersonMusicGenres>().HasData(personMusicGenres);
+            bldr.Entity<PersonEvents>().HasData(personEvents);
         }
     }
 }
