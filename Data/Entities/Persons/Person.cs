@@ -18,8 +18,8 @@ namespace BeforeApp.Data
         public string PhotoId { get; set; }
 
         // [NotMapped]
-        public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<PersonMusicGenres> PersonMusicGenres { get; set; }
+        public virtual ICollection<PersonEvents> PersonEvents { get; set; }
         public virtual ICollection<User> ConnectedUsers { get; set; }
     }
 }

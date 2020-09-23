@@ -23,8 +23,7 @@ namespace BeforeApp.Data
         public DbSet<Location> Locations { get; set; }
 
         public DbSet<MusicGenre> MusicGenres { get; set; }
-        ////
-        //public DbSet<Person> Persons { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -208,6 +207,22 @@ namespace BeforeApp.Data
                 .WithMany(a => a.PersonMusicGenres)
                 .HasForeignKey(ba => ba.MusicGenreId);
 
+
+            // Many-to-many relation between event and person
+            bldr.Entity<PersonEvents>()
+                .HasKey(t => new { t.EventId, t.PersonId });
+
+            bldr.Entity<PersonEvents>()
+                .HasOne(pt => pt.Event)
+                .WithMany(p => p.PersonEvents)
+                .HasForeignKey(pt => pt.EventId);
+
+            bldr.Entity<PersonEvents>()
+                .HasOne(pt => pt.Person)
+                .WithMany(t => t.PersonEvents)
+                .HasForeignKey(pt => pt.PersonId);
+
+            // Data seeding
             bldr.Entity<Location>().HasData(locations);
             bldr.Entity<Event>().HasData(events);
             foreach (var person in persons) bldr.Entity(person.GetType()).HasData(person);
