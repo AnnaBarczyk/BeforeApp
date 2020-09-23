@@ -11,6 +11,7 @@ namespace BeforeApp.Data.UnitOfWork
     {
         IEventRepository Events { get; }
         ILocationRepository Locations { get; }
+        IMusicGenreRepository MusicGenres { get; }
         public Task<int> Commit();
     }
 }
