@@ -18,3 +18,4 @@ Czy w UoW Save ma być async?
 
 ... 
 Co z metodą Dispose()? gdzie, kiedy i jak często??
+Czy zrobić nową tabelę z połączeniami user-user w zależności od eventu? Czy tylko kolekcja?

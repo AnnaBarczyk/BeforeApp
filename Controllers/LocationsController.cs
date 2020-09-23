@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using BeforeApp.Data.Entities;
-using BeforeApp.Data.Repositories;
-using BeforeApp.Data.Services;
+﻿using BeforeApp.Data.Services;
 using BeforeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

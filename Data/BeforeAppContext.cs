@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BeforeApp.Data.Entities;
 using BeforeApp.Data.Entities.Connectors;
+using BeforeApp.Data.Entities.Persons;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -91,7 +92,7 @@ namespace BeforeApp.Data
                     Email = "technochlopak@elo.pl",
                     Nickname = "Ziomek",
                     Birthdate = new DateTime(1985, 01, 18),
-                    Sex = "Male",
+                    Sex = SexEnum.Male,
                     Orientation = "Straight",
                     Description = "Siema elo 520"
                 },
@@ -101,7 +102,7 @@ namespace BeforeApp.Data
                     Email = "technolaska@elo.pl",
                     Nickname = "Ziomalka",
                     Birthdate = new DateTime(1994, 01, 18),
-                    Sex = "Female",
+                    Sex = SexEnum.Female,
                     Orientation = "Bi",
                     Description = "<3"
                 },
@@ -112,7 +113,7 @@ namespace BeforeApp.Data
                     Email = "admin@elo.pl",
                     Nickname = "Admin",
                     Birthdate = new DateTime(1994, 01, 18),
-                    Sex = "Female",
+                    Sex = SexEnum.Other,
                     Orientation = "Bi",
                     Description = "<3"
                 }
@@ -245,6 +246,10 @@ namespace BeforeApp.Data
             bldr.Entity<Location>().HasData(locations);
             bldr.Entity<Event>().HasData(events);
             foreach (var person in persons) bldr.Entity(person.GetType()).HasData(person);
+
+            bldr.Entity<Person>().Property(e => e.Sex).HasConversion(
+            v => v.ToString(),
+            v => (SexEnum)Enum.Parse(typeof(SexEnum), v));
 
             bldr.Entity<MusicGenre>().HasData(musicGenres);
             bldr.Entity<EventMusicGenres>().HasData(eventMusicGenres);

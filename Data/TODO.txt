@@ -1,3 +1,6 @@
 ﻿1 Zmienić funkcję PUT ---> update tak, aby pusste pola nie podmieniały istnijeących properties na null
 
 2 Zmienić Delete Event ze względu na lokacje! --- do przemyślenia:)
+
+3. Music Genres Conroller
+4. Person Controller (Czy osobne na role?)
