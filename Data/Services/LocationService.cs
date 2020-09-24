@@ -57,7 +57,7 @@ namespace BeforeApp.Data.Services
 
         public async Task<LocationModel> GetLocationByIdAsync(int id)
         {
-            var result = await _unitOfWork.Locations.GetById(id);
+            var result = await _unitOfWork.Locations.GetByIdAsync(id);
             if (result == null) return null;
             return _mapper.Map<LocationModel>(result);
         }

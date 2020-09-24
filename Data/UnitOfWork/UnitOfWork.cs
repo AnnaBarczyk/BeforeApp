@@ -19,7 +19,7 @@ namespace BeforeApp.Data.UnitOfWork
         
 
         public UnitOfWork(BeforeAppContext context, IEventRepository events, ILocationRepository locations,
-            IMusicGenres musicGenres, ILogger<Event> eventLogger, ILogger<Location> locationLogger)
+            IMusicGenresRepository musicGenres, ILogger<Event> eventLogger, ILogger<Location> locationLogger)
         {
             _context = context;
             _eventLogger = eventLogger;

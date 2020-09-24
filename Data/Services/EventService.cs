@@ -25,16 +25,16 @@ namespace BeforeApp.Data.Services
 
             if (model.LocationId > 0)
             {
-                var location = await _unitOfWork.Locations.GetById(model.LocationId);
+                var location = await _unitOfWork.Locations.GetByIdAsync(model.LocationId);
                 if (location != null) newEvent.Location = location;
 
                 // Location id = 1 stands for "Default/No Location"
-                else newEvent.Location = await _unitOfWork.Locations.GetById(1);            
+                else newEvent.Location = await _unitOfWork.Locations.GetByIdAsync(1);            
             }
             else
             {
                 // Location id = 1 stands for "Default/No Location"
-                newEvent.Location = await _unitOfWork.Locations.GetById(1);
+                newEvent.Location = await _unitOfWork.Locations.GetByIdAsync(1);
             }
 
 
@@ -68,16 +68,16 @@ namespace BeforeApp.Data.Services
 
             if (model.LocationId > 0)
             {
-                var location = await _unitOfWork.Locations.GetById(model.LocationId);
+                var location = await _unitOfWork.Locations.GetByIdAsync(model.LocationId);
                 if (location != null) updated.Location = location;
 
                 // Location id = 1 stands for "Default/No Location"
-                else updated.Location = await _unitOfWork.Locations.GetById(1);
+                else updated.Location = await _unitOfWork.Locations.GetByIdAsync(1);
             }
             else
             {
                 // Location id = 1 stands for "Default/No Location"
-                updated.Location = await _unitOfWork.Locations.GetById(1);
+                updated.Location = await _unitOfWork.Locations.GetByIdAsync(1);
             }
 
 
@@ -96,7 +96,7 @@ namespace BeforeApp.Data.Services
 
         public async Task<EventModel> GetEventByIdAsync(int id)
         {
-            var result = await _unitOfWork.Events.GetById(id);
+            var result = await _unitOfWork.Events.GetByIdAsync(id);
             if (result == null) return null;
             return _mapper.Map<EventModel>(result);
         }

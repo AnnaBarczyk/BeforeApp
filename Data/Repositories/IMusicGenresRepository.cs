@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Repositories
 {
-    public interface IMusicGenres : IRepository<MusicGenre>
+    public interface IMusicGenresRepository : IRepository<MusicGenre>
     {
-        
+        public Task<MusicGenre[]> GetAllMusicGenresAsync();
+        public Task<MusicGenre[]> GetByNameAsync(string name);
+
     }
 }

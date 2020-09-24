@@ -1,0 +1,33 @@
+﻿using BeforeApp.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BeforeApp.Data.Repositories
+{
+    public class MusicGenreRepository : Repository<MusicGenre>, IMusicGenresRepository
+    {
+        public MusicGenreRepository(BeforeAppContext context, ILogger<MusicGenre> logger) : base(context, logger)
+        {
+        }
+
+        public async Task<MusicGenre[]> GetAllMusicGenresAsync()
+        {
+            _logger.LogInformation("Getting all Music Genres");
+
+            return await table.ToArrayAsync();
+        }
+
+        public async Task<MusicGenre[]> GetByNameAsync(string name)
+        {
+            _logger.LogInformation($"Getting {name} Music Genre by name ");
+            var result = table.OrderByDescending(m => m.Name).Where(n => n.Name.Equals(name));
+            return await result.ToArrayAsync();
+        }
+
+    }
+}

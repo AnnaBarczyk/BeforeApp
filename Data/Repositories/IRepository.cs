@@ -8,7 +8,7 @@ namespace BeforeApp.Data.Repositories
         Task<bool> AddAsync(T entity);
         void Delete(int id);
 
-        Task<T> GetById(int id);
+        Task<T> GetByIdAsync(int id);
 
         Task<T[]> GetAllAsync();
         void UpdateEntity(T entity);

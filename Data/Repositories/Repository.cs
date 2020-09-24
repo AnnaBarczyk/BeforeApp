@@ -35,7 +35,7 @@ namespace BeforeApp.Data.Repositories
         }
 
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await table.FindAsync(id);
         }
