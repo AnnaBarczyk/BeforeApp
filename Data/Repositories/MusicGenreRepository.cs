@@ -22,11 +22,11 @@ namespace BeforeApp.Data.Repositories
             return await table.ToArrayAsync();
         }
 
-        public async Task<MusicGenre[]> GetByNameAsync(string name)
+        public async Task<MusicGenre> GetByNameAsync(string name)
         {
             _logger.LogInformation($"Getting {name} Music Genre by name ");
-            var result = table.OrderByDescending(m => m.Name).Where(n => n.Name.Equals(name));
-            return await result.ToArrayAsync();
+
+            return await table.AsNoTracking().FirstOrDefaultAsync(n => n.Name.Equals(name));
         }
 
     }

@@ -15,10 +15,11 @@ namespace BeforeApp.Data.Services
 
         public Task<MusicGenreModel> GetByIdAsync(int id);
 
-        public Task<MusicGenreModel[]> GetByNameAsync(string name);
+        public Task<MusicGenreModel> GetByNameAsync(string name);
 
         public Task<bool> Delete(int id);
 
+        public Task<int> GetIdByName(string name);
 
     }
 }

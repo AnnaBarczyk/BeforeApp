@@ -117,7 +117,7 @@ namespace BeforeApp.Controllers
             }
             catch (Exception)
             {
-                return BadRequest("Failed to delete");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
         }
 
@@ -146,14 +146,14 @@ namespace BeforeApp.Controllers
                 var id = await _locationService.GetIdByMonikerAsync(moniker);
                 if (id <= 0) return NotFound($"Location with moniker {moniker} could not be found");
                 var updated = await _locationService.UpdateEntity(model, id);
-                if (updated ==  null) return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                if (updated ==  null) return this.StatusCode(StatusCodes.Status500InternalServerError, "Failed to update");
 
                 return updated;
             }
             catch (Exception)
             {
 
-                return BadRequest("Failed to update");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal database update");
             }
         }
     }
