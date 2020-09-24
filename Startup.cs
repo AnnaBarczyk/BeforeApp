@@ -23,8 +23,12 @@ namespace BeforeApp
             services.AddDbContext<BeforeAppContext>();
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IMusicGenresRepository, MusicGenreRepository>();
+
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<IMusicGenresService, MusicGenresService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));

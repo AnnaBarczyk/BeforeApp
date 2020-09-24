@@ -13,6 +13,7 @@ namespace BeforeApp.Data.Entities
         [Required] public string Moniker { get; set; }
 
         public string Name { get; set; }
+        
         public DateTime EventDate { get; set; }
 
         public Location Location { get; set; }

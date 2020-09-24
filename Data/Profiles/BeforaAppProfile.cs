@@ -12,6 +12,7 @@ namespace BeforeApp.Data.Profiles
                 //ForMember(i => i.Location, opt => opt.MapFrom(src => src.LocationId)).
                 ReverseMap();
             CreateMap<Location, LocationModel>().ReverseMap();
+            CreateMap<MusicGenre, MusicGenreModel>().ReverseMap();
 
         }
     }
