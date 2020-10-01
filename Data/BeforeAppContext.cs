@@ -212,7 +212,8 @@ namespace BeforeApp.Data
                 .HasOne(pt => pt.MusicGenre)
                 .WithMany(t => t.EventMusicGenres)
                 .HasForeignKey(pt => pt.MusicGenreId);
-
+                //.OnDelete(cascade);
+            
             // Many-to-many relation between person and music genres
             bldr.Entity<PersonMusicGenres>()
                 .HasKey(a => new {a.PersonId, a.MusicGenreId});

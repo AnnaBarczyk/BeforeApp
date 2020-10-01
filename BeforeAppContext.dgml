@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Admin" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding DiscriminatorProperty: DiscriminatorValue: Admin" BaseClass="Person" Bounds="975.839486786883,88.3216604252179,74.8400000000001,44" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Admin" Name="Admin" UseManualLocation="True" />
+    <Node Id="Artist" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding DiscriminatorProperty: DiscriminatorValue: Artist" BaseClass="Person" Bounds="521.956666666667,67.98,99.21,141.92" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Artist" Name="Artist" />
+    <Node Id="Artist.EventId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="541.956666666667,163.94,59.21,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="EventId" MaxLength="None" Name="EventId" PropertyAccessMode="PropertyAccessMode.Default" Type="Nullable&lt;int&gt;" ValueGenerated="None" />
+    <Node Id="Artist.UserId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="541.956666666667,107.98,54.0466666666666,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="UserId" MaxLength="None" Name="UserId" PropertyAccessMode="PropertyAccessMode.Default" Type="Nullable&lt;int&gt;" ValueGenerated="None" />
+    <Node Id="Event" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Events" BaseClass="" Bounds="740.656422658054,289.645395816477,373.040000000001,253.840500000001" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Event" Name="Event" UseManualLocation="True" />
+    <Node Id="Event.Artists" Category="Navigation Collection" Bounds="1016.26992006549,329.645473022461,68.6700000000001,25.96" Dependent="Artist" Field="" Inverse="" Label="Artists (*)" Name="Artists" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;Artist&gt;" />
+    <Node Id="Event.EventDate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDateTimeTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="760.656902080462,385.605586547852,73.8133333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EventDate" MaxLength="None" Name="EventDate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Event.EventMusicGenres" Category="Navigation Collection" Bounds="760.6568386039,497.525966186523,132.433333333333,25.96" Dependent="EventMusicGenres" Field="" Inverse="Event" Label="EventMusicGenres (*)" Name="EventMusicGenres" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;EventMusicGenres&gt;" />
+    <Node Id="Event.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="760.656586325254,329.645473022461,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Event.Location" Category="Navigation Property" Bounds="760.656400778379,441.565669555664,82.12,25.96" Dependent="" Field="" Inverse="Events" Label="Location (1)" Name="Location" Principal="Location" PropertyAccessMode="PropertyAccessMode.Default" Type="Location" />
+    <Node Id="Event.LocationId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="864.4699245414,385.605586547852,75.3833333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="LocationId" MaxLength="None" Name="LocationId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="Event.Moniker" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="922.35337384153,329.645473022461,63.9166666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Moniker" MaxLength="None" Name="Moniker" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Event.Name" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="840.656336488015,329.645473022461,51.6966666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Name" MaxLength="None" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Event.PersonEvents" Category="Navigation Collection" Bounds="988.483299785541,441.565700073242,105.213333333333,25.96" Dependent="PersonEvents" Field="" Inverse="Event" Label="PersonEvents (*)" Name="PersonEvents" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;PersonEvents&gt;" />
+    <Node Id="Event.Publisher" Category="Navigation Property" Bounds="872.776458558327,441.565669555664,85.7066666666667,25.96" Dependent="" Field="" Inverse="" Label="Publisher (1)" Name="Publisher" Principal="Person" PropertyAccessMode="PropertyAccessMode.Default" Type="Person" />
+    <Node Id="Event.PublisherId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="969.853226950254,385.605586547852,78.9700000000003,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="PublisherId" MaxLength="None" Name="PublisherId" PropertyAccessMode="PropertyAccessMode.Default" Type="Nullable&lt;int&gt;" ValueGenerated="None" />
+    <Node Id="EventMusicGenres" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding" BaseClass="" Bounds="295.983333333333,40,195.156666666667,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="EventMusicGenres" Name="EventMusicGenres" />
+    <Node Id="EventMusicGenres.Event" Category="Navigation Property" Bounds="405.193333333333,80,65.9466666666667,25.96" Dependent="" Field="" Inverse="EventMusicGenres" Label="Event (1)" Name="Event" Principal="Event" PropertyAccessMode="PropertyAccessMode.Default" Type="Event" />
+    <Node Id="EventMusicGenres.EventId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="315.983333333333,80,59.21,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EventId" MaxLength="None" Name="EventId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="EventMusicGenres.MusicGenre" Category="Navigation Property" Bounds="315.983333333333,191.92,99.8566666666667,25.96" Dependent="" Field="" Inverse="EventMusicGenres" Label="MusicGenre (1)" Name="MusicGenre" Principal="MusicGenre" PropertyAccessMode="PropertyAccessMode.Default" Type="MusicGenre" />
+    <Node Id="EventMusicGenres.MusicGenreId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="315.983333333333,135.96,93.12,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="MusicGenreId" MaxLength="None" Name="MusicGenreId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="IModel" Category="Model" Annotations="Relational:MaxIdentifierLength: 128 SqlServer:ValueGenerationStrategy: IdentityColumn" Bounds="-1.06947150015912E-05,-0.000537968057244598,1177.41005493164,857.48114119873" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" Label="BeforeAppContext" ProductVersion="3.1.7" PropertyAccessMode="PropertyAccessMode.Default" />
+    <Node Id="Location" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: Locations" BaseClass="" Bounds="905.713333333333,611.62,251.696666666667,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Location" Name="Location" />
+    <Node Id="Location.Adress" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="925.713333333333,707.58,55.4433333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Adress" MaxLength="None" Name="Adress" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Location.City" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1005.71333333333,651.62,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="City" MaxLength="None" Name="City" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Location.Events" Category="Navigation Collection" Bounds="925.713333333333,763.54,69.5733333333334,25.96" Dependent="Event" Field="" Inverse="Location" Label="Events (*)" Name="Events" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;Event&gt;" />
+    <Node Id="Location.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="925.713333333333,651.62,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Location.Moniker" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1011.15666666667,707.58,63.9166666666665,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Moniker" MaxLength="None" Name="Moniker" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Location.Name" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="1085.71333333333,651.62,51.6966666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Name" MaxLength="None" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="MusicGenre" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding Relational:TableName: MusicGenres" BaseClass="" Bounds="20,611.62,179.123333333333,197.88" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="MusicGenre" Name="MusicGenre" />
+    <Node Id="MusicGenre.EventMusicGenres" Category="Navigation Collection" Bounds="40,707.580000000001,132.433333333333,25.96" Dependent="EventMusicGenres" Field="" Inverse="MusicGenre" Label="EventMusicGenres (*)" Name="EventMusicGenres" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;EventMusicGenres&gt;" />
+    <Node Id="MusicGenre.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="40,651.62,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="MusicGenre.Name" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="120,651.62,51.6966666666667,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Name" MaxLength="None" Name="Name" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="MusicGenre.PersonMusicGenres" Category="Navigation Collection" Bounds="40,763.540000000001,139.123333333333,25.9599999999999" Dependent="PersonMusicGenres" Field="" Inverse="MusicGenre" Label="PersonMusicGenres (*)" Name="PersonMusicGenres" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;PersonMusicGenres&gt;" />
+    <Node Id="Person" Category="EntityType" Annotations="" BaseClass="" Bounds="454.091666666667,583.64,420.94,253.84" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="Person" Name="Person" />
+    <Node Id="Person.Birthdate" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDateTimeTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="474.091666666667,679.6,68.3333333333334,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Birthdate" MaxLength="None" Name="Birthdate" PropertyAccessMode="PropertyAccessMode.Default" Type="DateTime" ValueGenerated="None" />
+    <Node Id="Person.ConnectedUsers" Category="Navigation Collection" Bounds="474.091666666667,791.52,121.68,25.96" Dependent="User" Field="" Inverse="" Label="ConnectedUsers (*)" Name="ConnectedUsers" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;User&gt;" />
+    <Node Id="Person.Description" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="474.091666666667,735.56,80.2533333333333,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Description" MaxLength="None" Name="Description" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Discriminator" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping ValueGeneratorFactory: System.Func`3[Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Metadata.IEntityType,Microsoft.EntityFrameworkCore.ValueGeneration.ValueGenerator]" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="584.345,735.56,90.4466666666666,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="True" IsUnicode="True" Label="Discriminator" MaxLength="None" Name="Discriminator" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Email" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="554.091666666667,623.64,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Email" MaxLength="None" Name="Email" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Id" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="SqlServer:ValueGenerationStrategy: IdentityColumn TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="474.091666666667,623.64,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Id" MaxLength="None" Name="Id" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="ValueGenerated.OnAdd" />
+    <Node Id="Person.Nickname" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="671.971666666667,679.6,72.9000000000001,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Nickname" MaxLength="None" Name="Nickname" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Orientation" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="774.871666666667,679.6,80.1599999999999,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Orientation" MaxLength="None" Name="Orientation" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Password" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="572.425,679.6,69.5466666666666,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="Password" MaxLength="None" Name="Password" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.PersonEvents" Category="Navigation Collection" Bounds="704.791666666667,735.56,105.213333333333,25.96" Dependent="PersonEvents" Field="" Inverse="Person" Label="PersonEvents (*)" Name="PersonEvents" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;PersonEvents&gt;" />
+    <Node Id="Person.PersonMusicGenres" Category="Navigation Collection" Bounds="625.771666666667,791.52,139.123333333333,25.96" Dependent="PersonMusicGenres" Field="" Inverse="Person" Label="PersonMusicGenres (*)" Name="PersonMusicGenres" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;PersonMusicGenres&gt;" />
+    <Node Id="Person.PhotoId" Category="Property Optional" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="714.091666666667,623.64,61.8966666666665,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="False" IsShadow="False" IsUnicode="True" Label="PhotoId" MaxLength="None" Name="PhotoId" PropertyAccessMode="PropertyAccessMode.Default" Type="string" ValueGenerated="None" />
+    <Node Id="Person.Sex" Category="Property Required" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping ValueConverter: Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter`2[BeforeApp.Data.Entities.Persons.SexEnum,System.String]" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="634.091666666667,623.64,50,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="False" IsIndexed="False" IsPrimaryKey="False" IsRequired="True" IsShadow="False" IsUnicode="True" Label="Sex" MaxLength="None" Name="Sex" PropertyAccessMode="PropertyAccessMode.Default" Type="SexEnum" ValueGenerated="None" />
+    <Node Id="PersonEvents" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding" BaseClass="" Bounds="651.27,67.98,208.583333333333,141.92" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="PersonEvents" Name="PersonEvents" />
+    <Node Id="PersonEvents.Event" Category="Navigation Property" Bounds="671.27,163.94,65.9466666666667,25.96" Dependent="" Field="" Inverse="PersonEvents" Label="Event (1)" Name="Event" Principal="Event" PropertyAccessMode="PropertyAccessMode.Default" Type="Event" />
+    <Node Id="PersonEvents.EventId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="671.27,107.98,59.21,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="EventId" MaxLength="None" Name="EventId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="PersonEvents.Person" Category="Navigation Property" Bounds="767.216666666667,163.94,72.6366666666665,25.96" Dependent="" Field="" Inverse="PersonEvents" Label="Person (1)" Name="Person" Principal="Person" PropertyAccessMode="PropertyAccessMode.Default" Type="Person" />
+    <Node Id="PersonEvents.PersonId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="760.48,107.98,65.9,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PersonId" MaxLength="None" Name="PersonId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="PersonMusicGenres" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding" BaseClass="" Bounds="100.01232214399,311.819770958178,208.536659952799,197.8804" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="PersonMusicGenres" Name="PersonMusicGenres" />
+    <Node Id="PersonMusicGenres.MusicGenre" Category="Navigation Property" Bounds="120.012323414517,463.740070958177,99.8566666666667,25.96" Dependent="" Field="" Inverse="PersonMusicGenres" Label="MusicGenre (1)" Name="MusicGenre" Principal="MusicGenre" PropertyAccessMode="PropertyAccessMode.Default" Type="MusicGenre" />
+    <Node Id="PersonMusicGenres.MusicGenreId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="120.012324838671,407.779970958177,93.12,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="MusicGenreId" MaxLength="None" Name="MusicGenreId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="PersonMusicGenres.Person" Category="Navigation Property" Bounds="215.91231670065,351.819870958177,72.6366666666667,25.96" Dependent="" Field="" Inverse="PersonMusicGenres" Label="Person (1)" Name="Person" Principal="Person" PropertyAccessMode="PropertyAccessMode.Default" Type="Person" />
+    <Node Id="PersonMusicGenres.PersonId" Category="Property Primary" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="120.012322957792,351.819870958177,65.9,25.96" Field="" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="False" IsPrimaryKey="True" IsRequired="True" IsShadow="False" IsUnicode="True" Label="PersonId" MaxLength="None" Name="PersonId" PropertyAccessMode="PropertyAccessMode.Default" Type="int" ValueGenerated="None" />
+    <Node Id="User" Category="EntityType" Annotations="ConstructorBinding: Microsoft.EntityFrameworkCore.Metadata.ConstructorBinding DiscriminatorProperty: DiscriminatorValue: User" BaseClass="Person" Bounds="344.446040852865,330.621220808808,196.683539835612,142.838190722656" ChangeTrackingStrategy="ChangeTrackingStrategy.Snapshot" Group="Expanded" IsAbstract="False" Label="User" Name="User" UseManualLocation="True" />
+    <Node Id="User.Artists" Category="Navigation Collection" Bounds="366.281876107887,427.499368555028,68.67,25.96" Dependent="Artist" Field="" Inverse="" Label="Artists (*)" Name="Artists" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="ICollection&lt;Artist&gt;" UseManualLocation="True" />
+    <Node Id="User.PersonId" Category="Property Foreign" AfterSaveBehavior="PropertySaveBehavior.Save" Annotations="TypeMapping: Microsoft.EntityFrameworkCore.Storage.IntTypeMapping" BeforeSaveBehavior="PropertySaveBehavior.Save" Bounds="455.229577596464,370.621364135742,65.9,25.96" Field="nofield" IsAlternateKey="False" IsConcurrencyToken="False" IsForeignKey="True" IsIndexed="True" IsPrimaryKey="False" IsRequired="False" IsShadow="True" IsUnicode="True" Label="PersonId" MaxLength="None" Name="PersonId" PropertyAccessMode="PropertyAccessMode.Default" Type="Nullable&lt;int&gt;" ValueGenerated="None" />
+    <Node Id="User.User" Category="Navigation Property" Bounds="364.446037760852,370.621364135742,60.7833333333334,25.96" Dependent="" Field="" Inverse="" Label="User (1)" Name="User" Principal="" PropertyAccessMode="PropertyAccessMode.Default" Type="{'PersonId'}" />
+  </Nodes>
+  <Links>
+    <Link Source="Artist" Target="Artist.EventId" Category="Contains" />
+    <Link Source="Artist" Target="Artist.UserId" Category="Contains" />
+    <Link Source="Artist" Target="Event" Category="Foreign Key" Annotations="" Bounds="621.166666666667,177.666233736656,136.341609921639,106.440823583457" From="Artist.EventId" IsUnique="False" Label="1:*" LabelBounds="690.568213515567,213.350170217787,14.0733333333335,15.96" Name="Artist -&gt; Event" To="Event.Id" />
+    <Link Source="Artist" Target="User" Category="Foreign Key" Annotations="" Bounds="481.700262704114,209.9,55.1301921289996,112.637544932839" From="Artist.UserId" IsUnique="False" Label="1:*" LabelBounds="511.061731185495,267.098002891204,14.0733333333332,15.96" Name="Artist -&gt; User" To="User.Id" />
+    <Link Source="Event" Target="Event.Artists" Category="Contains" />
+    <Link Source="Event" Target="Event.EventDate" Category="Contains" />
+    <Link Source="Event" Target="Event.EventMusicGenres" Category="Contains" />
+    <Link Source="Event" Target="Event.Id" Category="Contains" />
+    <Link Source="Event" Target="Event.Location" Category="Contains" />
+    <Link Source="Event" Target="Event.LocationId" Category="Contains" />
+    <Link Source="Event" Target="Event.Moniker" Category="Contains" />
+    <Link Source="Event" Target="Event.Name" Category="Contains" />
+    <Link Source="Event" Target="Event.PersonEvents" Category="Contains" />
+    <Link Source="Event" Target="Event.Publisher" Category="Contains" />
+    <Link Source="Event" Target="Event.PublisherId" Category="Contains" />
+    <Link Source="Event" Target="Location" Category="Foreign Key" Annotations="" Bounds="972.240557657102,543.485895816478,21.1802588688823,59.6528425711502" From="Event.LocationId" IsUnique="False" Label="1:*" LabelBounds="986.837737654618,562.660523797937,14.0733333333335,15.96" Name="Event -&gt; Location" To="Location.Id" />
+    <Link Source="Event" Target="Person" Category="Foreign Key" Annotations="" Bounds="783.930476243038,543.485895816478,29.872577131505,33.4420241864182" From="Event.PublisherId" IsUnique="False" Label="1:*" LabelBounds="800.35833814148,561.539277600579,14.0733333333334,15.96" Name="Event -&gt; Person" To="Person.Id" />
+    <Link Source="EventMusicGenres" Target="Event" Category="Foreign Key" Annotations="" Bounds="491.14,189.707426322445,241.532365617166,125.662902378827" From="EventMusicGenres.EventId" IsUnique="False" Label="1:*" LabelBounds="612.829270305414,234.804642613883,14.0733333333335,15.96" Name="EventMusicGenres -&gt; Event" To="Event.Id" />
+    <Link Source="EventMusicGenres" Target="EventMusicGenres.Event" Category="Contains" />
+    <Link Source="EventMusicGenres" Target="EventMusicGenres.EventId" Category="Contains" />
+    <Link Source="EventMusicGenres" Target="EventMusicGenres.MusicGenre" Category="Contains" />
+    <Link Source="EventMusicGenres" Target="EventMusicGenres.MusicGenreId" Category="Contains" />
+    <Link Source="EventMusicGenres" Target="MusicGenre" Category="Foreign Key" Annotations="" Bounds="205.790344238281,237.880004882813,155.481201171875,385.418579101563" From="EventMusicGenres.MusicGenreId" IsUnique="False" Label="1:*" LabelBounds="317.393982855605,324.377084392037,14.0733333333333,15.96" Name="EventMusicGenres -&gt; MusicGenre" To="MusicGenre.Id" />
+    <Link Source="IModel" Target="Admin" Category="Contains" />
+    <Link Source="IModel" Target="Artist" Category="Contains" />
+    <Link Source="IModel" Target="Event" Category="Contains" />
+    <Link Source="IModel" Target="EventMusicGenres" Category="Contains" />
+    <Link Source="IModel" Target="Location" Category="Contains" />
+    <Link Source="IModel" Target="MusicGenre" Category="Contains" />
+    <Link Source="IModel" Target="Person" Category="Contains" />
+    <Link Source="IModel" Target="PersonEvents" Category="Contains" />
+    <Link Source="IModel" Target="PersonMusicGenres" Category="Contains" />
+    <Link Source="IModel" Target="User" Category="Contains" />
+    <Link Source="Location" Target="Location.Adress" Category="Contains" />
+    <Link Source="Location" Target="Location.City" Category="Contains" />
+    <Link Source="Location" Target="Location.Events" Category="Contains" />
+    <Link Source="Location" Target="Location.Id" Category="Contains" />
+    <Link Source="Location" Target="Location.Moniker" Category="Contains" />
+    <Link Source="Location" Target="Location.Name" Category="Contains" />
+    <Link Source="MusicGenre" Target="MusicGenre.EventMusicGenres" Category="Contains" />
+    <Link Source="MusicGenre" Target="MusicGenre.Id" Category="Contains" />
+    <Link Source="MusicGenre" Target="MusicGenre.Name" Category="Contains" />
+    <Link Source="MusicGenre" Target="MusicGenre.PersonMusicGenres" Category="Contains" />
+    <Link Source="Person" Target="Person.Birthdate" Category="Contains" />
+    <Link Source="Person" Target="Person.ConnectedUsers" Category="Contains" />
+    <Link Source="Person" Target="Person.Description" Category="Contains" />
+    <Link Source="Person" Target="Person.Discriminator" Category="Contains" />
+    <Link Source="Person" Target="Person.Email" Category="Contains" />
+    <Link Source="Person" Target="Person.Id" Category="Contains" />
+    <Link Source="Person" Target="Person.Nickname" Category="Contains" />
+    <Link Source="Person" Target="Person.Orientation" Category="Contains" />
+    <Link Source="Person" Target="Person.Password" Category="Contains" />
+    <Link Source="Person" Target="Person.PersonEvents" Category="Contains" />
+    <Link Source="Person" Target="Person.PersonMusicGenres" Category="Contains" />
+    <Link Source="Person" Target="Person.PhotoId" Category="Contains" />
+    <Link Source="Person" Target="Person.Sex" Category="Contains" />
+    <Link Source="PersonEvents" Target="Event" Category="Foreign Key" Annotations="" Bounds="799.425709015257,209.9,44.5625175453132,72.0899414578695" From="PersonEvents.EventId" IsUnique="False" Label="1:*" LabelBounds="823.408179867605,228.933363644556,14.0733333333334,15.9600000000001" Name="PersonEvents -&gt; Event" To="Event.Id" />
+    <Link Source="PersonEvents" Target="Person" Category="Foreign Key" Annotations="" Bounds="686.181860141064,209.9,58.0832108851426,364.851923144672" From="PersonEvents.PersonId" IsUnique="False" Label="1:*" LabelBounds="712.578171943298,287.117735658096,14.0733333333334,15.96" Name="PersonEvents -&gt; Person" To="Person.Id" />
+    <Link Source="PersonEvents" Target="PersonEvents.Event" Category="Contains" />
+    <Link Source="PersonEvents" Target="PersonEvents.EventId" Category="Contains" />
+    <Link Source="PersonEvents" Target="PersonEvents.Person" Category="Contains" />
+    <Link Source="PersonEvents" Target="PersonEvents.PersonId" Category="Contains" />
+    <Link Source="PersonMusicGenres" Target="MusicGenre" Category="Foreign Key" Annotations="" Bounds="143.532185700914,509.700170958178,29.4892454162608,93.3379574313099" From="PersonMusicGenres.MusicGenreId" IsUnique="False" Label="1:*" LabelBounds="162.281335558004,550.33294256958,14.0733333333333,15.96" Name="PersonMusicGenres -&gt; MusicGenre" To="MusicGenre.Id" />
+    <Link Source="PersonMusicGenres" Target="Person" Category="Foreign Key" Annotations="" Bounds="308.548982096789,478.674239344592,153.61187542456,100.053756852971" From="PersonMusicGenres.PersonId" IsUnique="False" Label="1:*" LabelBounds="386.446476209611,511.065258402146,14.0733333333333,15.96" Name="PersonMusicGenres -&gt; Person" To="Person.Id" />
+    <Link Source="PersonMusicGenres" Target="PersonMusicGenres.MusicGenre" Category="Contains" />
+    <Link Source="PersonMusicGenres" Target="PersonMusicGenres.MusicGenreId" Category="Contains" />
+    <Link Source="PersonMusicGenres" Target="PersonMusicGenres.Person" Category="Contains" />
+    <Link Source="PersonMusicGenres" Target="PersonMusicGenres.PersonId" Category="Contains" />
+    <Link Source="User" Target="Person" Category="Foreign Key" Annotations="" Bounds="494.126149920597,473.459411531464,73.9482250134379,102.872734519369" From="User.PersonId" IsUnique="False" Label="1:*" LabelBounds="532.724229971575,507.76841877162,14.0733333333334,15.96" Name="User -&gt; Person" To="Person.Id" />
+    <Link Source="User" Target="User.Artists" Category="Contains" />
+    <Link Source="User" Target="User.PersonId" Category="Contains" />
+    <Link Source="User" Target="User.User" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="EntityType" />
+    <Category Id="Foreign Key" />
+    <Category Id="Model" />
+    <Category Id="Navigation Collection" />
+    <Category Id="Navigation Property" />
+    <Category Id="Property Foreign" />
+    <Category Id="Property Optional" />
+    <Category Id="Property Primary" />
+    <Category Id="Property Required" />
+  </Categories>
+  <Properties>
+    <Property Id="AfterSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Annotations" Description="Annotations" Group="Model Properties" DataType="System.String" />
+    <Property Id="BaseClass" Description="Base class" Group="Model Properties" DataType="System.String" />
+    <Property Id="BeforeSaveBehavior" Group="Property Flags" DataType="System.String" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="ChangeTrackingStrategy" Description="Change tracking strategy" Group="Model Properties" DataType="System.String" />
+    <Property Id="Dependent" Description="Dependent entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Field" Description="Backing field" Group="Model Properties" DataType="System.String" />
+    <Property Id="From" Description="Target property" Group="Model Properties" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="Inverse" Description="Inverse entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="IsAbstract" Label="IsAbstract" Description="IsAbstract" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="IsAlternateKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsConcurrencyToken" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsForeignKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsIndexed" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsPrimaryKey" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsRequired" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsShadow" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnicode" Group="Property Flags" DataType="System.Boolean" />
+    <Property Id="IsUnique" Group="Model Properties" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="MaxLength" DataType="System.String" />
+    <Property Id="Name" Group="Model Properties" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Principal" Description="Principal entity" Group="Model Properties" DataType="System.String" />
+    <Property Id="ProductVersion" Label="Product Version" Description="EF Core product version" Group="Model Properties" DataType="System.String" />
+    <Property Id="PropertyAccessMode" Group="Property Flags" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="To" Description="Source property" Group="Model Properties" DataType="System.String" />
+    <Property Id="Type" Description="CLR data type" Group="Model Properties" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueGenerated" Group="Property Flags" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="EntityType" ValueLabel="True">
+      <Condition Expression="HasCategory('EntityType')" />
+      <Setter Property="Background" Value="#FFC0C0C0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Primary" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Primary')" />
+      <Setter Property="Background" Value="#FF008000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Optional" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Optional')" />
+      <Setter Property="Background" Value="#FF808040" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Foreign" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Foreign')" />
+      <Setter Property="Background" Value="#FF8080FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Property Required" ValueLabel="True">
+      <Condition Expression="HasCategory('Property Required')" />
+      <Setter Property="Background" Value="#FFC0A000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Property" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Property')" />
+      <Setter Property="Background" Value="#FF990000" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Navigation Collection" ValueLabel="True">
+      <Condition Expression="HasCategory('Navigation Collection')" />
+      <Setter Property="Background" Value="#FFFF3232" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Model" ValueLabel="True">
+      <Condition Expression="HasCategory('Model')" />
+      <Setter Property="Background" Value="#FFFFFFFF" />
+    </Style>
+  </Styles>
+</DirectedGraph>

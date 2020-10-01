@@ -11,6 +11,7 @@ namespace BeforeApp.Data.Repositories
     {
         public Task<MusicGenre[]> GetAllMusicGenresAsync();
         public Task<MusicGenre> GetByNameAsync(string name);
+        public Task<MusicGenre[]> GetAllIncludeEventsAsync();
 
     }
 }

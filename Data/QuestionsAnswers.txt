@@ -18,4 +18,29 @@ Czy w UoW Save ma być async?
 
 ... 
 Co z metodą Dispose()? gdzie, kiedy i jak często??
+...
+
 Czy zrobić nową tabelę z połączeniami user-user w zależności od eventu? Czy tylko kolekcja?
+UsersAttending. Zależność będzie między trzema entitis tj. konkretny event(user-user),
+tak żeby mogli rozmawiać i kontaktować się tylko w odniesieniu do konkretnego eventu
+w którym oboje uczestniczą.
+
+Czy zrobić osobną metodę z asnotracking?
+Czy powinniśmy zrobić cały beforeapp kontekst asnotracking ze względu na to, że w przyszłości będzie to aplikacja
+internetowa a co za tym idzie kontekts i tak będzie osobny u usera i na serwerze?
+Klienci apki będą traktowani jako "disconnected", ponieważ baza nie będzie u nich na sprzęcie
+ani w sieci lokalnej i serwer nie wie co dzieje się na przeglądarce klienta, więc nie ma jak śledzić
+i bezsensownie tracimy wydajność? Czy disconnected jest równoznaczne z transient a connected tak jakby kontekst to był
+jako singleton, jak wstrzykujemy kontekts to jaki on jest?
+
+
+
+
+Gdzie umieścić loggera?
+
+Jak mapować model z many-to-many?
+
+Czy warto wprowadzić teraz osobne projekty a nie tylko osobne foldery jako np. data, domain itp
+data(konsolowe), domain(konsolowe), controllers(restapi)
+
+Czy przy remove musimy ręcznie dodać usuwanie powiązanych czy ef robi to za nas?

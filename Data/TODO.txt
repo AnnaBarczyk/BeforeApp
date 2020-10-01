@@ -1,5 +1,11 @@
 ﻿
 1. Zmienić Delete Event ze względu na lokacje! --- do przemyślenia:)
 
-2. Update Entity: Przy aktualizowaniu obiektu obiekty zależne jak i properrties muszą zostać uprzednio wczytane i wrzcone na front, aby zapoiec ich wyzerowaniu. 
+2. Update Entity: Przy aktualizowaniu obiektu obiekty zależne jak i 
+properrties muszą zostać uprzednio wczytane i wrzcone na front, aby 
+zapobiec ich wyzerowaniu.
+
+3. dodac listy w konstruktorach
+
+4. logger! fabryka loggerów!
 

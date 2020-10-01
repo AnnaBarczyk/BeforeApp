@@ -37,6 +37,7 @@ namespace BeforeApp.Data.Repositories
 
         public async Task<T> GetByIdAsync(int id)
         {
+            // Zmiana jeśli będzie no tracking
             return await table.FindAsync(id);
         }
 

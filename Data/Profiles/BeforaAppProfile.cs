@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BeforeApp.Data.Entities;
 using BeforeApp.Models;
+using System.Linq;
 
 namespace BeforeApp.Data.Profiles
 {
@@ -12,7 +13,9 @@ namespace BeforeApp.Data.Profiles
                 //ForMember(i => i.Location, opt => opt.MapFrom(src => src.LocationId)).
                 ReverseMap();
             CreateMap<Location, LocationModel>().ReverseMap();
-            CreateMap<MusicGenre, MusicGenreModel>().ReverseMap();
+            CreateMap<MusicGenre, MusicGenreModel>()
+                .ForMember(e => e.Events, opt => opt.MapFrom(src => src.EventMusicGenres.Select(l => l.Event).ToList()))
+                .ReverseMap();
 
         }
     }

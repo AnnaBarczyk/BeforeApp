@@ -36,7 +36,7 @@ namespace BeforeApp.Data.Services
 
         public async Task<MusicGenreModel[]> GetAllMusicGenresAsync()
         {
-            var result = await _unitOfWork.MusicGenres.GetAllAsync();
+            var result = await _unitOfWork.MusicGenres.GetAllIncludeEventsAsync();
             return _mapper.Map<MusicGenreModel[]>(result);
         }
 

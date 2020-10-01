@@ -15,6 +15,13 @@ namespace BeforeApp.Data.Repositories
         {
         }
 
+        public async Task<MusicGenre[]> GetAllIncludeEventsAsync()
+        {
+            var query = _context.MusicGenres.Include(e => e.EventMusicGenres)
+                .ThenInclude(v => v.Event);
+            return await query.ToArrayAsync();
+        }
+
         public async Task<MusicGenre[]> GetAllMusicGenresAsync()
         {
             _logger.LogInformation("Getting all Music Genres");
