@@ -1,5 +1,5 @@
-﻿using BeforeApp.Data.Services;
-using BeforeApp.Models;
+﻿using BeforeApp.Domain.Services;
+using BeforeApp.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;

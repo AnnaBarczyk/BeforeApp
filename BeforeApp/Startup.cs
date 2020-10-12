@@ -1,6 +1,8 @@
 using AutoMapper;
-using BeforeApp.Data.Services;
-using BeforeApp.Data.UnitOfWork;
+using BeforeApp.Data;
+using BeforeApp.Data.Repositories;
+using BeforeApp.Domain.Services;
+using BeforeApp.Domain.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
