@@ -1,7 +1,9 @@
-﻿using BeforeApp.Data.UnitOfWork;
-using BeforeApp.Models;
+﻿using BeforeApp.Data.Entities;
+using BeforeApp.Domain.UnitOfWork;
+using BeforeApp.Domain.Models;
 using System;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace BeforeApp.Domain.Services
 {

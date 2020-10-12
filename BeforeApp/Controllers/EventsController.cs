@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BeforeApp.Domain.Models;
+using BeforeApp.Domain.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -147,7 +149,7 @@ namespace BeforeApp.Controllers
 
                 return updated;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest("Pan błąd");
             }

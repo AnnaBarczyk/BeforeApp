@@ -1,6 +1,8 @@
 ﻿using BeforeApp.Data.Entities;
 using BeforeApp.Data.Entities.Connectors;
 using BeforeApp.Data.Entities.Persons;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 

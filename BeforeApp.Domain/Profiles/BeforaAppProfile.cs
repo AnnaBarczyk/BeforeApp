@@ -1,4 +1,6 @@
-﻿using BeforeApp.Models;
+﻿using AutoMapper;
+using BeforeApp.Data.Entities;
+using BeforeApp.Domain.Models;
 using System.Linq;
 
 namespace BeforeApp.Domain.Profiles

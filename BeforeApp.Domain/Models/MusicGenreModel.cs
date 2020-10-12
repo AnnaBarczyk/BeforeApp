@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BeforeApp.Data;
+using BeforeApp.Data.Entities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BeforeApp.Domain.Models

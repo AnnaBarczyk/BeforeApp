@@ -1,4 +1,4 @@
-﻿using BeforeApp.Models;
+﻿using BeforeApp.Domain.Models;
 using System.Threading.Tasks;
 
 namespace BeforeApp.Domain.Services

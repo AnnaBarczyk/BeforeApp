@@ -1,5 +1,5 @@
 ﻿
-using BeforeApp.Models;
+using BeforeApp.Domain.Models;
 using System;
 using System.Threading.Tasks;
 

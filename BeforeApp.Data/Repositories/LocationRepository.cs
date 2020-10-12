@@ -1,4 +1,6 @@
 ﻿using BeforeApp.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
 

@@ -1,4 +1,6 @@
-﻿namespace BeforeApp.Migrations
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace BeforeApp.Migrations
 {
     public partial class AddSexEnum : Migration
     {

@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using BeforeApp.Data;
+using BeforeApp.Data.Entities;
+using BeforeApp.Data.Repositories;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace BeforeApp.Domain.UnitOfWork
 {
