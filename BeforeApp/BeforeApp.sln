@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTestProject1", "NUnitT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeforeApp.Data", "..\BeforeApp.Data\BeforeApp.Data.csproj", "{0990661E-7CC1-4490-A35B-1AA1C7189EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeforeApp.Domain", "..\BeforeApp.Domain\BeforeApp.Domain.csproj", "{EF7ED25C-5942-4E42-9CD9-840B2ABA9DA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeforeApp.Domain", "..\BeforeApp.Domain\BeforeApp.Domain.csproj", "{EF7ED25C-5942-4E42-9CD9-840B2ABA9DA7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0990661E-7CC1-4490-A35B-1AA1C7189EE4} = {0990661E-7CC1-4490-A35B-1AA1C7189EE4}
 	EndProjectSection
@@ -28,7 +28,6 @@ Global
 		{83B9C940-EF77-4677-BCC6-1CDC55EECDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83B9C940-EF77-4677-BCC6-1CDC55EECDFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09F61226-9860-48A9-B204-FF2D1D8186BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09F61226-9860-48A9-B204-FF2D1D8186BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09F61226-9860-48A9-B204-FF2D1D8186BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09F61226-9860-48A9-B204-FF2D1D8186BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0990661E-7CC1-4490-A35B-1AA1C7189EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

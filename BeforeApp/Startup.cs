@@ -1,6 +1,7 @@
 using AutoMapper;
 using BeforeApp.Data;
 using BeforeApp.Data.Repositories;
+using BeforeApp.Domain.Profiles;
 using BeforeApp.Domain.Services;
 using BeforeApp.Domain.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace BeforeApp
 {
@@ -31,7 +33,13 @@ namespace BeforeApp
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            services.AddAutoMapper(typeof(Startup));
+            // initial Automapper config
+            //services.AddAutoMapper(typeof(Startup));
+
+            // After breaking down to Domain, Data, Controller
+            // services.AddAutoMapper(typeof(BeforeAppProfile).GetTypeInfo().Assembly);
+            services.AddAutoMapper(typeof(BeforeAppProfile));
+
 
             services.AddControllers();
 

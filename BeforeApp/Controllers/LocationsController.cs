@@ -29,7 +29,7 @@ namespace BeforeApp.Controllers
                 return await _locationService.GetAllLocationsAsync();
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }

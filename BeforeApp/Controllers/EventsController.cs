@@ -26,7 +26,7 @@ namespace BeforeApp.Controllers
             {
                 return await _eventService.GetAllEventsAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
