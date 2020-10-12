@@ -31,5 +31,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BeforeApp.Domain\BeforeApp.Domain.csproj" />
+  </ItemGroup>
+
 
 </Project>
