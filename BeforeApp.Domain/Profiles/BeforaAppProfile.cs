@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using BeforeApp.Data.Entities;
-using BeforeApp.Models;
+﻿using BeforeApp.Models;
 using System.Linq;
 
-namespace BeforeApp.Data.Profiles
+namespace BeforeApp.Domain.Profiles
 {
     public class BeforeAppProfile : Profile
     {

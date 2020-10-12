@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BeforeApp.Controllers
 {
@@ -87,7 +87,7 @@ namespace BeforeApp.Controllers
                 var existing = await _eventService.GetEventByMonikerAsync(model.Moniker);
                 if (existing != null) return BadRequest("Moniker in use already!");
 
-                if (await _eventService.Add(model)>0)
+                if (await _eventService.Add(model) > 0)
                     return Created($"/api/events/{model.Moniker}", model);
             }
             catch (Exception)

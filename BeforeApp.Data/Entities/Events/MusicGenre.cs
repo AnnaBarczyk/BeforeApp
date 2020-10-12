@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BeforeApp.Data.Entities.Connectors;
+﻿using BeforeApp.Data.Entities.Connectors;
+using System.Collections.Generic;
 
 namespace BeforeApp.Data.Entities
 {

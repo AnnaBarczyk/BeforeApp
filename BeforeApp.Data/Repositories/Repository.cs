@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using System.Threading.Tasks;
 
 namespace BeforeApp.Data.Repositories
 {
@@ -54,7 +51,7 @@ namespace BeforeApp.Data.Repositories
             //var updatedEntity = _context.Entry(entity);
 
             var updatedEntity = _context.Update(entity);
- 
+
             updatedEntity.State = EntityState.Modified;
 
         }

@@ -2,9 +2,7 @@
 using BeforeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BeforeApp.Controllers
@@ -56,11 +54,11 @@ namespace BeforeApp.Controllers
             {
                 var existing = await _musicGenresService.GetByNameAsync(model.Name);
                 if (existing != null) return BadRequest("Music genre with current name already exist");
-                if (await _musicGenresService.Add(model) > 0) return Created($"/api/musicgenres/{model.Name}", model);           
+                if (await _musicGenresService.Add(model) > 0) return Created($"/api/musicgenres/{model.Name}", model);
             }
             catch (Exception)
             {
-            return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
             }
             return BadRequest();
         }
@@ -97,6 +95,6 @@ namespace BeforeApp.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal database update");
             }
         }
-        
+
     }
 }

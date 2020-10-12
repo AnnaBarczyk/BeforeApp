@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using BeforeApp.Data.Entities;
-using BeforeApp.Data.UnitOfWork;
+﻿using BeforeApp.Data.UnitOfWork;
 using BeforeApp.Models;
 using System;
-using System.Reflection;
 using System.Threading.Tasks;
 
-namespace BeforeApp.Data.Services
+namespace BeforeApp.Domain.Services
 {
     public class EventService : IEventService
     {
@@ -29,7 +26,7 @@ namespace BeforeApp.Data.Services
                 if (location != null) newEvent.Location = location;
 
                 // Location id = 1 stands for "Default/No Location"
-                else newEvent.Location = await _unitOfWork.Locations.GetByIdAsync(1);            
+                else newEvent.Location = await _unitOfWork.Locations.GetByIdAsync(1);
             }
             else
             {
@@ -87,7 +84,7 @@ namespace BeforeApp.Data.Services
             return _mapper.Map<EventModel>(updated);
         }
 
-        public async Task<EventModel> GetEventByMonikerAsync(string moniker) 
+        public async Task<EventModel> GetEventByMonikerAsync(string moniker)
         {
             var eventByMoniker = await _unitOfWork.Events.GetEventByMonikerAsync(moniker);
             if (eventByMoniker == null) return null;

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BeforeApp.Data;
-using BeforeApp.Data.Entities;
 
-namespace BeforeApp.Models
+namespace BeforeApp.Domain.Models
 {
     public class EventModel
     {
@@ -21,7 +19,7 @@ namespace BeforeApp.Models
         [Required]
         [ForeignKey("Location")] public int LocationId { get; set; }
 
-        
+
         public Location Location { get; set; }
         public Person Publisher { get; set; }
         public ICollection<Person> UsersAttending { get; set; }

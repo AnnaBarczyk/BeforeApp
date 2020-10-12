@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BeforeApp.Data.Entities;
+using System;
 using System.Threading.Tasks;
-using BeforeApp.Data.Entities;
 
 namespace BeforeApp.Data.Repositories
 {

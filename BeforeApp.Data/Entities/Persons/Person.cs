@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using BeforeApp.Data.Entities;
+﻿using BeforeApp.Data.Entities;
 using BeforeApp.Data.Entities.Connectors;
 using BeforeApp.Data.Entities.Persons;
+using System;
+using System.Collections.Generic;
 
 namespace BeforeApp.Data
 {

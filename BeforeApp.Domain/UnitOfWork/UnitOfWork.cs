@@ -1,10 +1,6 @@
-﻿using BeforeApp.Data.Entities;
-using BeforeApp.Data.Repositories;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace BeforeApp.Data.UnitOfWork
+namespace BeforeApp.Domain.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -16,7 +12,7 @@ namespace BeforeApp.Data.UnitOfWork
         public ILogger<Event> _eventLogger { get; set; }
         public ILogger<Location> _locationLogger { get; set; }
 
-        
+
 
         public UnitOfWork(BeforeAppContext context, IEventRepository events, ILocationRepository locations,
             IMusicGenresRepository musicGenres, ILogger<Event> eventLogger, ILogger<Location> locationLogger)
@@ -32,7 +28,7 @@ namespace BeforeApp.Data.UnitOfWork
 
         public async Task<int> Commit()
         {
-           return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

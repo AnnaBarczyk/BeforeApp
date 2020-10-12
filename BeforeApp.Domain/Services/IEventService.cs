@@ -3,7 +3,7 @@ using BeforeApp.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace BeforeApp.Data.Services
+namespace BeforeApp.Domain.Services
 {
     public interface IEventService
     {
@@ -16,7 +16,7 @@ namespace BeforeApp.Data.Services
         public Task<int> GetIdByMonikerAsync(string moniker);
 
         public Task<EventModel[]> GetEventsByParameters(string name, DateTime? dateTime, string locationName,
-            string locationCity, string music,string artist);
+            string locationCity, string music, string artist);
 
         public Task<bool> Delete(int id);
         public Task<bool> Delete(string moniker);

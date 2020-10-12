@@ -1,6 +1,4 @@
 ﻿using BeforeApp.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,7 +40,7 @@ namespace BeforeApp.Data.Repositories
             _logger.LogInformation($"Getting a Event for Moniker: {moniker}");
 
             return await table.AsNoTracking().FirstOrDefaultAsync(x => x.Moniker.Equals(moniker));
-           
+
         }
 
         public async Task<Location[]> GetLocationsByParameters(string name, string locationCity, string adress)

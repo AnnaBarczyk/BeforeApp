@@ -11,7 +11,7 @@ namespace BeforeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LocationsController: ControllerBase
+    public class LocationsController : ControllerBase
     {
         private readonly ILocationService _locationService;
 
@@ -146,7 +146,7 @@ namespace BeforeApp.Controllers
                 var id = await _locationService.GetIdByMonikerAsync(moniker);
                 if (id <= 0) return NotFound($"Location with moniker {moniker} could not be found");
                 var updated = await _locationService.UpdateEntity(model, id);
-                if (updated ==  null) return this.StatusCode(StatusCodes.Status500InternalServerError, "Failed to update");
+                if (updated == null) return this.StatusCode(StatusCodes.Status500InternalServerError, "Failed to update");
 
                 return updated;
             }

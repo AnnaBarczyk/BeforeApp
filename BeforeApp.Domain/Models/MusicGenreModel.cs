@@ -1,13 +1,7 @@
-﻿using BeforeApp.Data;
-using BeforeApp.Data.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BeforeApp.Models
+namespace BeforeApp.Domain.Models
 {
     public class MusicGenreModel
     {

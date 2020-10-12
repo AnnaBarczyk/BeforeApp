@@ -1,6 +1,4 @@
 using AutoMapper;
-using BeforeApp.Data;
-using BeforeApp.Data.Repositories;
 using BeforeApp.Data.Services;
 using BeforeApp.Data.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
@@ -34,7 +32,7 @@ namespace BeforeApp
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
-            
+
             services.AddMvc(opt => opt.EnableEndpointRouting = false);
 
             services.AddSwaggerGen(c =>

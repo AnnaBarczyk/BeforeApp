@@ -1,9 +1,7 @@
-﻿using System;
+﻿using BeforeApp.Data.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using BeforeApp.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace BeforeApp.Data.Repositories
 {

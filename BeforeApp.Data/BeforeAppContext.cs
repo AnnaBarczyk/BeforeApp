@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using BeforeApp.Data.Entities;
+﻿using BeforeApp.Data.Entities;
 using BeforeApp.Data.Entities.Connectors;
 using BeforeApp.Data.Entities.Persons;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 
 namespace BeforeApp.Data
 {
@@ -201,7 +199,7 @@ namespace BeforeApp.Data
 
             // Many-to-many relation between event and music genre
             bldr.Entity<EventMusicGenres>()
-                .HasKey(t => new {t.EventId, t.MusicGenreId});
+                .HasKey(t => new { t.EventId, t.MusicGenreId });
 
             bldr.Entity<EventMusicGenres>()
                 .HasOne(pt => pt.Event)
@@ -212,11 +210,11 @@ namespace BeforeApp.Data
                 .HasOne(pt => pt.MusicGenre)
                 .WithMany(t => t.EventMusicGenres)
                 .HasForeignKey(pt => pt.MusicGenreId);
-                //.OnDelete(cascade);
-            
+            //.OnDelete(cascade);
+
             // Many-to-many relation between person and music genres
             bldr.Entity<PersonMusicGenres>()
-                .HasKey(a => new {a.PersonId, a.MusicGenreId});
+                .HasKey(a => new { a.PersonId, a.MusicGenreId });
 
             bldr.Entity<PersonMusicGenres>()
                 .HasOne(ba => ba.Person)
